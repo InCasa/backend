@@ -1,5 +1,5 @@
 <?php
-    $app->post('/aplicativo', 'validJson',  function() use ($body) {	
+    $app->get('/aplicativo',  function() use ($body) {	
 		//$Aplicativo = new Aplicativo($body);
 		//$Aplicativo->create();
 
