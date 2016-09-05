@@ -17,7 +17,7 @@
 	ini_set('date.timezone', 'America/Sao_Paulo');
 				
 	// Importa Slim
-	require 'Frameworks/Slim/App.php';
+	require 'vendor/slim/slim/Slim/App.php';
 	\Slim\Slim::registerAutoloader();
 	
 	// Autoloader de classes customizadas

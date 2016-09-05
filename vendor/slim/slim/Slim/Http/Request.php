@@ -689,7 +689,7 @@ class Request extends Message implements ServerRequestInterface
      *
      * Note: This method is not part of the PSR-7 standard.
      *
-     * @param string $key     The attribute name.
+     * @param string $name    The attribute name.
      * @param mixed  $default Default value to return if the attribute does not exist.
      *
      * @return mixed
@@ -847,22 +847,6 @@ class Request extends Message implements ServerRequestInterface
     public function getServerParams()
     {
         return $this->serverParams;
-    }
-
-    /**
-     * Retrieve a server parameter.
-     *
-     * Note: This method is not part of the PSR-7 standard.
-     *
-     * @param  string $key
-     * @param  mixed  $default
-     * @return mixed
-     */
-    public function getServerParam($key, $default = null)
-    {
-        $serverParams = $this->getServerParams();
-
-        return isset($serverParams[$key]) ? $serverParams[$key] : $default;
     }
 
     /*******************************************************************************
