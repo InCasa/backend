@@ -18,13 +18,13 @@
 				
 	// Importa Slim
 	require 'vendor/slim/slim/Slim/App.php';
-	\Slim\Slim::registerAutoloader();
+	vendor\slim\slim\Slim::registerAutoloader();
 	
 	// Autoloader de classes customizadas
 	require 'Autoloader.php';
-	
+
 	// Cria aplicação
-	$app = new \Slim\Slim();
+	$app = new vendor\slim\slim\Slim();
 	
 	// Importa rotas
 	require 'Routes.php';
