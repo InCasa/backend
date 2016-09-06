@@ -1,5 +1,6 @@
 <?php
-    $app->get('/aplicativo',  function() use ($body) {	
+
+    $app->get('/aplicativo',  function (Request $request, Response $response) {	
 		//$Aplicativo = new Aplicativo($body);
 		//$Aplicativo->create();
 
@@ -7,5 +8,3 @@
         return $response;
 
 	});
-
-?>
