@@ -1,21 +1,11 @@
-<?PHP 
+<?php 
     require 'vendor/autoload.php';
+    require 'autoload.php';
     
     $app = new \Slim\App();
-
     
-
-    $app->get('/',  function ($request, $response, $args) {	
-		
-        echo 'Teste';
-
-	});
-
+    foreach(glob("routes/*.php") as $filename){
+        include $filename;
+    }
     
-  
-    require 'autoload.php';
-    require 'Routes.php';
-
-    $app-> run(); 
-
-?>
+    $app->run();

@@ -1,4 +1,4 @@
-<?PHP 
+<?php 
     public class sensorTempUmi(){
         private $nome;
         private $descricao;
@@ -6,26 +6,25 @@
         private $umidade;
         
         public function __construct($nome, $descricao, $temperatura, $umidade){
-            $this nome -> $nome;
-            $this descricao -> $descricao;
-            $this temperatura -> $temperatura;
-            $this umidade -> $umidade;
+            $this->nome = $nome;
+            $this->descricao = $descricao;
+            $this->temperatura = $temperatura;
+            $this->umidade = $umidade;
         }
         
         public function getNome(){
-            return $this -> nome;
+            return $this->nome;
         }
         
         public function getDescricao(){
-            return $this -> descricao;
+            return $this->descricao;
         }
         
         public function getTemperatura(){
-            return $this -> temperatura;
+            return $this->temperatura;
         }
         
         public function getUmidade(){
-            return $this -> umidade;
+            return $this->umidade;
         }
     }
-?>

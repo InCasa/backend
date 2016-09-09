@@ -1,4 +1,4 @@
-<?PHP 
+<?php 
     public class User(){
         private $idUser;
         private $nome;
@@ -6,25 +6,24 @@
         private $senha;
         
         public function __construct($nome, $login, $senha){
-            $this nome -> $nome;
-            $this login -> $login;
-            $this senha -> $senha;
+            $this->nome = $nome;
+            $this->login = $login;
+            $this->senha = $senha;
         }
         
         public function getId(){
-            return $this -> $idUser;
+            return $this->idUser;
         }
         
         public function getNome(){
-            return nome -> $nome;
+            return $this->nome;
         }
         
         public function getLogin(){
-            return login -> $login;
+            return $this->login;
         }
         
         public function getSenha(){
-            return senha -> $senha;
+            return $this->senha;
         }
     }
-?>

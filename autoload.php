@@ -6,18 +6,10 @@
 	}
 	
 	function loadModels($classname) {
-		if(is_readable('models/'.$classname.'.php')) {
-			require 'models/'.$classname.'.php';
-		}
-	}
-	
-	function loadRoutes($classname) {
-		if(is_readable('routes/'.$classname.'.php')) {
-			require 'routes/'.$classname.'.php';
+		if(is_readable('model/'.$classname.'.php')) {
+			require 'model/'.$classname.'.php';
 		}
 	}
 	
 	spl_autoload_register('loadClass');
 	spl_autoload_register('loadModels');
-	spl_autoload_register('loadRoutes');
-	
