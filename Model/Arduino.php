@@ -14,62 +14,62 @@ Public class Arduino{
     Private $PinoLDR;
     
     Public function __construct($ip, $MAC, $gateway, $mask, $PinoDHT22, $PinoRele1, $PinoRele2, $PinoRele3, $PinoRele4, $PinoLDR, $Porta){
-        $this ip -> $ip;
-        $this MAC -> $MAC;
-        $this gateway -> $gateway;
-        $this mask -> $mask;
-        $this porta -> $porta;
+        $this->ip = $ip;
+        $this->MAC = $MAC;
+        $this->gateway = $gateway;
+        $this->mask = $mask;
+        $this->porta = $porta;
         
-        $this PinoDHT22 -> $PinoDHT22;
-        $this PinoRele1 -> $PinoRele1;
-        $this PinoRele2 -> $PinoRele2;
-        $this PinoRele3 -> $PinoRele3;
-        $this PinoRele4 -> $PinoRele4;
-        $this PinoLDR -> $PinoLDR;
+        $this->PinoDHT22 = $PinoDHT22;
+        $this->PinoRele1 = $PinoRele1;
+        $this->PinoRele2 = $PinoRele2;
+        $this->PinoRele3 = $PinoRele3;
+        $this->PinoRele4 = $PinoRele4;
+        $this->PinoLDR = $PinoLDR;
     }
     
     public function getIP(){
-        return $this -> ip;
+        return $this->ip;
     }
     
     public function getMAC(){
-        return $this -> MAC;
+        return $this->MAC;
     }
     
     public function getGateway(){
-        return $this -> gateway;
+        return $this->gateway;
     }
     
     public function getMask(){
-        return $this -> mask;
+        return $this->mask;
     }
     
     public function getPinoDHT(){
-        return $this -> PinoDHT22;
+        return $this->PinoDHT22;
     }
     
     public function getPinoRele1(){
-        return $this -> PinoRele1;
+        return $this->PinoRele1;
     }
     
     public function getPinoRele2(){
-        return $this -> PinoRele2;
+        return $this->PinoRele2;
     }
     
     public function getPinoRele3(){
-        return $this -> PinoRele3;
+        return $this->PinoRele3;
     }
     
     public function getPinoRele4(){
-        return $this -> PinoRele4;
+        return $this->PinoRele4;
     }
     
     public function getPinoLDR(){
-        return $this -> PinoLDR;
+        return $this->PinoLDR;
     }
     
     public function getPorta(){
-        return $this -> porta;
+        return $this->porta;
     }
    
 }
