@@ -17,10 +17,4 @@
 			$this->con = new PDO('mysql:host=' . $this->DBHOST . ';dbname='.$this->DBNAME, $this->DBUSER, $this->DBPASS, $opcoes);
 		}
 
-
     }
-
-
-
-?>
-
