@@ -1,6 +1,5 @@
 <?php
-
-    public class Rele{
+    class Rele {
         private $nome;
         private $porta;
         private $descricao;

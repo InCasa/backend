@@ -1,5 +1,6 @@
 <?php 
-     class Aplicativo{
+     class Aplicativo {
+        private $idAplicativo;
         private $nome;
         private $MAC;
                 
@@ -16,4 +17,21 @@
             return $this->mac;
         }
         
+        //function CRUD
+        public function create() {
+            
+        }
+
+        public function update() {
+            
+        }
+
+        public function delete() {
+            
+        }
+
+        public function getAplicativo() {
+            
+        }
+
     }

@@ -1,5 +1,5 @@
 <?php 
-    public class User(){
+    class User {
         private $idUser;
         private $nome;
         private $login;
@@ -25,5 +25,22 @@
         
         public function getSenha(){
             return $this->senha;
+        }
+
+        //function CRUD
+        public function create() {
+            
+        }
+
+        public function update() {
+            
+        }
+
+        public function delete() {
+            
+        }
+
+        public function getUser() {
+            
         }
     }

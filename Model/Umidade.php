@@ -1,5 +1,6 @@
 <?php 
-    public class sensorUmidade(){
+    class Umidade {
+        private $idUmidade;
         private $nome;
         private $descricao;
         private $valor;        
@@ -20,6 +21,23 @@
         
         public function getValor(){
             return $this->valor;
+        }
+
+        //function CRUD
+        public function create() {
+            
+        }
+
+        public function update() {
+            
+        }
+
+        public function delete() {
+            
+        }
+
+        public function getUmidade() {
+            
         }
                 
     }
