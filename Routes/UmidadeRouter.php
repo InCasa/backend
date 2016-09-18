@@ -2,7 +2,7 @@
 	global $app;
 
     $app->get('/umidade',  function () {	
-		return "Rota GET umidade";
+		return "Umidade: " . rand(0, 100);
 	});
     
     $app->post('/umidade', function() {

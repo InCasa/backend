@@ -1,8 +1,8 @@
 <?php
 	global $app;
 
-    $app->get('/luminosidade',  function () {	
-		return "Rota GET Luminosidade";
+    $app->get('/luminosidade',  function () {			
+        return "Luminosidade: " . rand(0, 100);
 	});
     
     $app->post('/luminosidade', function() {

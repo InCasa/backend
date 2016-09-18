@@ -1,7 +1,7 @@
 <?php
 	global $app;
 
-    $app->get('/rele',  function () {	
+    $app->get('/rele/{id}',  function () {	
 		return "Rota GET Rele";
 	});
     
