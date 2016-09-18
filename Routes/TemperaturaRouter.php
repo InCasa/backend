@@ -2,7 +2,7 @@
 	global $app;
 
     $app->get('/temperatura',  function () {	
-		return "Rota GET temperatura";
+		return "Temperatura: " . rand(0, 100);
 	});
     
     $app->post('/temperatura', function() {
