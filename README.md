@@ -7,3 +7,7 @@ Automação Residencial através de micro controlador Arduino utilizando API de 
 ## Funcionamento
 
 Responsável pela comunicação do aplicativo Android: https://github.com/InCasa/aplicativo com o sistema Arduino: https://github.com/InCasa/arduino
+
+## Arquitetura
+
+![alt tag](http://i.imgur.com/MrwVU13.png)
