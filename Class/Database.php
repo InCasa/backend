@@ -6,16 +6,30 @@
 		private $DBNAME = 'InCasa';
 		private $DBUSER = 'root';
 		private $DBPASS = '';
-		private $con;
+		private static $con;
 		
-		// Cria uma conexão ao banco de dados		
-		public function __construct() {						
+			
+		private function __construct() {						
+			$this->conectar();
+		}
+		
+		// Cria uma conexão ao banco de dados	
+		public function conectar(){
 			$opcoes = array(
 			    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'
 			);
 			
 			$this->con = new PDO('mysql:host=' . $this->DBHOST . ';dbname='.$this->DBNAME, $this->DBUSER, $this->DBPASS, $opcoes);
+
 		}
+
+		// Retorna a instância de database
+		public static function getInstance() {
+			if (empty(self::$con)) {
+				self::$con = new database();
+			}
+			return self::$con;
+    }
 
 
 		//CRUD
