@@ -2,7 +2,7 @@
 
     class TemperaturaDAO{
 
-    public function __construct(){
+		public function __construct(){
 
         }
             
