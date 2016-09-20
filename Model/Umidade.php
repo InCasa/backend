@@ -23,21 +23,8 @@
             return $this->valor;
         }
 
-        //function CRUD
-        public function create() {
-            
-        }
-
-        public function update() {
-            
-        }
-
-        public function delete() {
-            
-        }
-
-        public function getUmidade() {
-            
+        public function getIdUmidade(){
+            return $this->idUmidade;
         }
                 
     }

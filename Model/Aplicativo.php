@@ -16,22 +16,9 @@
         public function getMAC(){
             return $this->mac;
         }
+
+        public function getIdAplicativo(){
+            return $this->idAplicativo;
+        }
         
-        //function CRUD
-        public function create() {
-            
-        }
-
-        public function update() {
-            
-        }
-
-        public function delete() {
-            
-        }
-
-        public function getAplicativo() {
-            
-        }
-
     }

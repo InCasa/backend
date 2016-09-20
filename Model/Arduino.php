@@ -6,6 +6,7 @@
         private $gateway;
         private $mask;
         private $Porta;
+        private $cod;
         
         private $PinoDHT22;
         Private $PinoRele1;
@@ -14,12 +15,13 @@
         Private $PinoRele4;
         Private $PinoLDR;
         
-        Public function __construct($ip, $MAC, $gateway, $mask, $PinoDHT22, $PinoRele1, $PinoRele2, $PinoRele3, $PinoRele4, $PinoLDR, $Porta){
+        Public function __construct($ip, $MAC, $gateway, $mask, $PinoDHT22, $PinoRele1, $PinoRele2, $PinoRele3, $PinoRele4, $PinoLDR, $Porta, $cod){
             $this->ip = $ip;
             $this->MAC = $MAC;
             $this->gateway = $gateway;
             $this->mask = $mask;
             $this->porta = $porta;
+            $this->cod = $cod;
             
             $this->PinoDHT22 = $PinoDHT22;
             $this->PinoRele1 = $PinoRele1;
@@ -73,21 +75,12 @@
             return $this->porta;
         }
 
-        //function CRUD
-        public function create() {
-            
+        public function getCod(){
+            return $this->cod;
         }
 
-        public function update() {
-            
+        public function getIdArduino(){
+            return $this->idArduino;
         }
-
-        public function delete() {
             
-        }
-
-        public function getArduino() {
-            
-        }
-    
     }
