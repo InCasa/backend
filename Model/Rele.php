@@ -1,5 +1,6 @@
 <?php
     class Rele {
+        private $idRele;
         private $nome;
         private $porta;
         private $descricao;
@@ -20,6 +21,10 @@
         
         public function getDescricao(){
             return $this->descricao;
+        }
+
+        public function getIdRele(){
+            return $this->idRele;
         }
     
     }
