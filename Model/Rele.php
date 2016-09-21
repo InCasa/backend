@@ -5,10 +5,8 @@
         private $porta;
         private $descricao;
         
-        public function __construct($nome, $porta, $descricao){
-            $this->nome = $nome;
-            $this->porta = $porta;
-            $this->descricao = $descricao;        
+        public function __construct(){
+                    
         }
         
         public function getNome(){
@@ -26,5 +24,21 @@
         public function getIdRele(){
             return $this->idRele;
         }
-    
+        
+        public function setIdRele($idRele) {
+            $this->idRele = $idRele;
+        }
+
+        public function setNome($nome) {
+            $this->nome = $nome;
+        }
+
+        public function setPorta($porta) {
+            $this->porta = $porta;
+        }
+
+        public function setDescricao($descricao) {
+            $this->descricao = $descricao;
+        }
+        
     }

@@ -5,10 +5,8 @@
         private $login;
         private $senha;
         
-        public function __construct($nome, $login, $senha){
-            $this->nome = $nome;
-            $this->login = $login;
-            $this->senha = $senha;
+        public function __construct(){
+            
         }
         
         public function getId(){
@@ -26,5 +24,21 @@
         public function getSenha(){
             return $this->senha;
         }
+        
+        public function setIdUser($idUser) {
+            $this->idUser = $idUser;
+        }
 
+        public function setNome($nome) {
+            $this->nome = $nome;
+        }
+
+        public function setLogin($login) {
+            $this->login = $login;
+        }
+
+        public function setSenha($senha) {
+            $this->senha = $senha;
+        }
+        
     }
