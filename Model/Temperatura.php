@@ -1,4 +1,4 @@
-<?php
+ <?php
     require "require.php";
 
     class Temperatura {
@@ -7,10 +7,8 @@
         private $descricao;
         private $valor;        
         
-        public function __construct($nome, $descricao, $valor){
-            $this->nome = $nome;
-            $this->descricao = $descricao;
-            $this->valor = $valor;            
+        public function __construct(){
+                        
         }
         
         public function getNome(){
@@ -27,6 +25,22 @@
 
         public function getIdTemperatura(){
             return $this->idTemperatura;
+        }
+        
+        public function setIdTemperatura($idTemperatura) {
+            $this->idTemperatura = $idTemperatura;
+        }
+
+        public function setNome($nome) {
+            $this->nome = $nome;
+        }
+
+        public function setDescricao($descricao) {
+            $this->descricao = $descricao;
+        }
+
+        public function setValor($valor) {
+            $this->valor = $valor;
         }
 
     }

@@ -5,10 +5,8 @@
         private $descricao;
         private $valor;        
         
-        public function __construct($nome, $descricao, $valor){
-            $this->nome = $nome;
-            $this->descricao = $descricao;
-            $this->valor = $valor;            
+        public function __construct(){
+                        
         }
         
         public function getNome(){
@@ -26,5 +24,23 @@
         public function getIdUmidade(){
             return $this->idUmidade;
         }
+        
+        public function setIdUmidade($idUmidade) {
+            $this->idUmidade = $idUmidade;
+        }
+
+        public function setNome($nome) {
+            $this->nome = $nome;
+        }
+
+        public function setDescricao($descricao) {
+            $this->descricao = $descricao;
+        }
+
+        public function setValor($valor) {
+            $this->valor = $valor;
+        }
+
+
                 
     }
