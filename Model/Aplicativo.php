@@ -4,9 +4,8 @@
         private $nome;
         private $MAC;
                 
-        public function __construct($nome, $MAC){
-            $this->nome = $nome;
-            $this->mac = $MAC;
+        public function __construct() {
+            
         }
         
         public function getNome(){
@@ -21,4 +20,16 @@
             return $this->idAplicativo;
         }
         
+		function setIdAplicativo($idAplicativo) {
+            $this->idAplicativo = $idAplicativo;
+        }
+
+        function setNome($nome) {
+            $this->nome = $nome;
+        }
+
+        function setMAC($MAC) {
+            $this->MAC = $MAC;
+        }
+		
     }

@@ -15,20 +15,8 @@
         Private $PinoRele4;
         Private $PinoLDR;
         
-        Public function __construct($ip, $MAC, $gateway, $mask, $PinoDHT22, $PinoRele1, $PinoRele2, $PinoRele3, $PinoRele4, $PinoLDR, $Porta, $cod){
-            $this->ip = $ip;
-            $this->MAC = $MAC;
-            $this->gateway = $gateway;
-            $this->mask = $mask;
-            $this->porta = $porta;
-            $this->cod = $cod;
+        Public function __construct() {
             
-            $this->PinoDHT22 = $PinoDHT22;
-            $this->PinoRele1 = $PinoRele1;
-            $this->PinoRele2 = $PinoRele2;
-            $this->PinoRele3 = $PinoRele3;
-            $this->PinoRele4 = $PinoRele4;
-            $this->PinoLDR = $PinoLDR;
         }
         
         public function getIP(){
@@ -82,5 +70,58 @@
         public function getIdArduino(){
             return $this->idArduino;
         }
+		
+		function setIdArduino($idArduino) {
+            $this->idArduino = $idArduino;
+        }
+
+        function setIp($ip) {
+            $this->ip = $ip;
+        }
+
+        function setMAC($MAC) {
+            $this->MAC = $MAC;
+        }
+
+        function setGateway($gateway) {
+            $this->gateway = $gateway;
+        }
+
+        function setMask($mask) {
+            $this->mask = $mask;
+        }
+
+        function setPorta($Porta) {
+            $this->Porta = $Porta;
+        }
+
+        function setCod($cod) {
+            $this->cod = $cod;
+        }
+
+        function setPinoDHT22($PinoDHT22) {
+            $this->PinoDHT22 = $PinoDHT22;
+        }
+
+        function setPinoRele1($PinoRele1) {
+            $this->PinoRele1 = $PinoRele1;
+        }
+
+        function setPinoRele2($PinoRele2) {
+            $this->PinoRele2 = $PinoRele2;
+        }
+
+        function setPinoRele3($PinoRele3) {
+            $this->PinoRele3 = $PinoRele3;
+        }
+
+        function setPinoRele4($PinoRele4) {
+            $this->PinoRele4 = $PinoRele4;
+        }
+
+        function setPinoLDR($PinoLDR) {
+            $this->PinoLDR = $PinoLDR;
+        }
+
             
     }
