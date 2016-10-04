@@ -6,14 +6,14 @@ USE InCasa;
 
 -- Tabela responsável pelas configurações do app --
 CREATE TABLE aplicativo(
-	idConfig	INT				AUTO_INCREMENT NOT NULL,
+	idAplicativo	INT				AUTO_INCREMENT NOT NULL,
     mac			VARCHAR(17)		NOT NULL,
-	CONSTRAINT	pk_aplicativo	PRIMARY KEY	(idConfig)
+	CONSTRAINT	pk_aplicativo	PRIMARY KEY	(idAplicativo)
 );
 
 -- Tabela responsável pelas configurações do Arduino --
 CREATE TABLE arduino(
-	idConfig	INT				AUTO_INCREMENT NOT NULL,
+	idArduino	INT				AUTO_INCREMENT NOT NULL,
 	ip			INT				NOT NULL,
     mac			VARCHAR(15)		NOT NULL,
 	gateway		VARCHAR(15)		NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE arduino(
 	pinRELE4	INT				NOT NULL,
 	pinLDR		INT				NOT NULL,
 	cod			INT				NOT NULL,
-    CONSTRAINT	pk_arduino	PRIMARY KEY	(idConfig)
+    CONSTRAINT	pk_arduino	PRIMARY KEY	(idArduino)
 );
 
 -- Tabela responsável pelas informações do sensor --
