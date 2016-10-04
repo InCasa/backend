@@ -7,7 +7,7 @@
              
         public function create($user) {
             $con = database::getInstance();
-            $sql = $con->prepare("INSERT INTO userS(nome, login, senha) VALUES (?, ?, ?)");
+            $sql = $con->prepare("INSERT INTO userS (nome, login, senha) VALUES (?, ?, ?)");
             $sql->bindParam(1, $user->getNome());
             $sql->bindParam(2, $user->getLogin());
             $sql->bindParam(3, $user->getSenha());

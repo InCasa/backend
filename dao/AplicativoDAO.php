@@ -16,7 +16,7 @@
 
         public function update($aplicativo) {
             $con = database::getInstance();
-            $sql = $con->prepare("UPDATE aplicativo SET mac = ? WHERE idConfig = ?");
+            $sql = $con->prepare("UPDATE aplicativo SET mac = ? WHERE idAplicativo = ?");
             $sql->bindParam(1, $aplicativo->getMAC());
             $sql->bindParam(2, $aplicativo->getIdAplicativo());
             $sql->execute();             
@@ -24,7 +24,7 @@
 
         public function delete($aplicativo) {
             $con = database::getInstance();
-            $sql = $con->prepare("DELETE FROM aplicativo WHERE idConfig = ?");
+            $sql = $con->prepare("DELETE FROM aplicativo WHERE idAplicativo = ?");
             $sql->bindParam(1, $aplicativo->getIdAplicativo());
             $sql->execute();
         }

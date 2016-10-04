@@ -26,7 +26,7 @@
 
         public function update($arduino) {
             $con = database::getInstance();
-            $sql = $con->prepare("UPDATE arduino SET ip = ?, mac = ?, gateway = ?, mask = ?, porta = ?, pinDHT22 = ?, pinRELE1 = ?, pinRELE2 = ?, pinRELE3 = ?, pinRELE4 = ?, pinLDR = ?, cod = ? WHERE idConfig = ?");
+            $sql = $con->prepare("UPDATE arduino SET ip = ?, mac = ?, gateway = ?, mask = ?, porta = ?, pinDHT22 = ?, pinRELE1 = ?, pinRELE2 = ?, pinRELE3 = ?, pinRELE4 = ?, pinLDR = ?, cod = ? WHERE idArduino = ?");
             $sql->bindParam(1, $arduino->getIP());
             $sql->bindParam(2, $arduino->getMAC());
             $sql->bindParam(3, $arduino->getGateway());
@@ -45,7 +45,7 @@
 
         public function delete($arduino) {
             $con = database::getInstance();
-            $sql = $con->prepare("DELETE FROM arduino WHERE idConfig = ?");
+            $sql = $con->prepare("DELETE FROM arduino WHERE idArduino = ?");
             $sql->bindParam(1, $arduino->getIdArduino());
             $sql->execute();
         }
