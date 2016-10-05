@@ -9,11 +9,11 @@
         return "Rota POST aplicativo";
     })->add($validJson);
     
-    $app->put('/aplicativo/update/{id}',function($request, $reponse, $args) {
+    $app->put('/aplicativo/update/{id}',function($request, $response, $args) {
         print_r($args);
         return "Rota PUT aplicativo";
     })->add($validJson);
     
-    $app->delete('/aplicativo/delete/{id}', function($request, $reponse, $args) {
+    $app->delete('/aplicativo/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE aplicativo";
     });

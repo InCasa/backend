@@ -9,11 +9,11 @@
         return "Rota POST umidade";
     })->add($validJson);
     
-    $app->put('/umidade/update/{id}',function($request, $reponse, $args) {
+    $app->put('/umidade/update/{id}',function($request, $response, $args) {
         print_r($args);
         return "Rota PUT umidade";
     })->add($validJson);
     
-    $app->delete('/umidade/delete/{id}', function($request, $reponse, $args) {
+    $app->delete('/umidade/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE umidade";
     });

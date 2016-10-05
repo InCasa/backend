@@ -5,7 +5,7 @@
 		return "Rota GET user";
 	});
 
-    $app->post('/user',  function ($request, $reponse, $args) {	
+    $app->post('/user',  function ($request, $response, $args) {	
 		$user = new User();
 
         $body = $request->getParsedBody();
@@ -18,15 +18,15 @@
         $userDAO->create($user);
 
         $response->getBody()->write("Hello,".$user->getNome());
-        return $reponse;
+        return $response;
         
 	})->add($validJson);
         
-    $app->put('/user/update/{id}',function($request, $reponse, $args) {
+    $app->put('/user/update/{id}',function($request, $response, $args) {
         print_r($args);
         return "Rota PUT user";
     })->add($validJson);
     
-    $app->delete('/user/delete/{id}', function($request, $reponse, $args) {
+    $app->delete('/user/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE user";
     });
