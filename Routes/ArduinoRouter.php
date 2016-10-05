@@ -9,11 +9,11 @@
         return "Rota POST arduino";
     })->add($validJson);
     
-    $app->put('/arduino/update/{id}',function($request, $reponse, $args) {
+    $app->put('/arduino/update/{id}',function($request, $response, $args) {
         print_r($args);
         return "Rota PUT arduino";
     })->add($validJson);
     
-    $app->delete('/arduino/delete/{id}', function($request, $reponse, $args) {
+    $app->delete('/arduino/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE arduino";
     });

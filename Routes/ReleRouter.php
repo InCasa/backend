@@ -9,11 +9,11 @@
         return "Rota POST Rele";
     })->add($validJson);
     
-    $app->put('/rele/update/{id}',function($request, $reponse, $args) {
+    $app->put('/rele/update/{id}',function($request, $response, $args) {
         print_r($args);
         return "Rota PUT Rele";
     })->add($validJson);
     
-    $app->delete('/rele/delete/{id}', function($request, $reponse, $args) {
+    $app->delete('/rele/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE Rele";
     });
