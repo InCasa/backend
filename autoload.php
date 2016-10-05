@@ -10,6 +10,13 @@
 			require 'model/'.$classname.'.php';
 		}
 	}
-	
+    
+	function loadDAO($classname) {
+		if(is_readable('dao/'.$classname.'.php')) {
+			require 'dao/'.$classname.'.php';
+		}
+	}
+    	
 	spl_autoload_register('loadClass');
 	spl_autoload_register('loadModels');
+    spl_autoload_register('loadDAO');
