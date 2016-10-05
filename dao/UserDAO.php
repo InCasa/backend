@@ -1,12 +1,12 @@
 <?php
     class UserDAO{
-
+        private $con;
+        
         public function __construct(){
-
+            $this->con = database::getInstance();
         }
              
         public function create($user) {
-            $con = database::getInstance();
             $sql = $con->prepare("INSERT INTO userS (nome, login, senha) VALUES (?, ?, ?)");
             $sql->bindParam(1, $user->getNome());
             $sql->bindParam(2, $user->getLogin());
