@@ -1,14 +1,14 @@
 <?php
 
     class ReleDAO{
-
+        private $con;
+        
         public function __construct(){
-
+            $this->con = Database::getInstancia();
         }
 
         public function create($rele) {
-            $con = database::getInstance();
-            $sql = $con->prepare("INSERT INTO rele(nome, descricao, porta) VALUES (?, ?, ?)");
+            $sql = $this->con->prepare("INSERT INTO rele(nome, descricao, porta) VALUES (?, ?, ?)");
             $sql->bindParam(1, $rele->getNome());
             $sql->bindParam(2, $rele->getDescricao());
             $sql->bindParam(3, $rele->getPorta());
@@ -16,8 +16,7 @@
         }
 
         public function update($rele) {
-            $con = database::getInstance();
-            $sql = $con->prepare("UPDATE rele SET nome = ?, descricao = ?, porta = ? WHERE idRele = ?");
+            $sql = $this->con->prepare("UPDATE rele SET nome = ?, descricao = ?, porta = ? WHERE idRele = ?");
             $sql->bindParam(1, $rele->getNome());
             $sql->bindParam(2, $rele->getDescricao());
             $sql->bindParam(3, $rele->getPorta());
@@ -26,8 +25,7 @@
         }
 
         public function delete($rele) {
-            $con = database::getInstance();
-            $sql = $con->prepare("DELETE FROM rele WHERE idRele = ?");
+            $sql = $this->con->prepare("DELETE FROM rele WHERE idRele = ?");
             $sql->bindParam(1, $rele->getIdRele());
             $sql->execute();
         }
