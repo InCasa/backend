@@ -3,20 +3,19 @@
         private $con;
         
         public function __construct(){
-            $this->con = database::getInstance();
+            $this->con = Database::getInstancia();
         }
              
         public function create($user) {
-            $sql = $con->prepare("INSERT INTO userS (nome, login, senha) VALUES (?, ?, ?)");
+            $sql = $this->con->prepare("INSERT INTO userS (nome, login, senha) VALUES (?, ?, ?)");
             $sql->bindParam(1, $user->getNome());
             $sql->bindParam(2, $user->getLogin());
             $sql->bindParam(3, $user->getSenha());
-            $sql->execute();            
+            $sql->execute();         
         }
 
         public function update($user) {
-            $con = database::getInstance();
-            $sql = $con->prepare("UPDATE userS SET nome = ?, login = ?, senha = ? WHERE idUserS = ?");
+            $sql = $this->con->prepare("UPDATE userS SET nome = ?, login = ?, senha = ? WHERE idUserS = ?");
             $sql->bindParam(1, $user->getNome());
             $sql->bindParam(2, $user->getLogin());
             $sql->bindParam(3, $user->getSenha());
@@ -25,8 +24,7 @@
         }
 
         public function delete($user) {
-            $con = database::getInstance();
-            $sql = $con->prepare("DELETE FROM userS WHERE idUserS = ?");
+            $sql = $this->con->prepare("DELETE FROM userS WHERE idUserS = ?");
             $sql->bindParam(1, $user->getId());
             $sql->execute();
         }
