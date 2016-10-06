@@ -71,8 +71,7 @@ CREATE TABLE temperaturaValor(
 CREATE TABLE sensorUmidade(
 	idSensor	INT				AUTO_INCREMENT NOT NULL,
     nome		VARCHAR(12)		NOT NULL,
-	descricao	VARCHAR(40)		NOT NULL,
-	valor		DOUBLE			NOT NULL,
+	descricao	VARCHAR(40)		NOT NULL,	
 	CONSTRAINT	pk_sensor_umidade	PRIMARY KEY	(idSensor)
 );
 
@@ -94,6 +93,18 @@ CREATE TABLE rele(
 	descricao	VARCHAR(40)		NOT NULL,
 	porta		INT				NOT NULL,
 	CONSTRAINT	pk_rele	PRIMARY KEY	(idRele)
+);
+
+-- Tabela responsável pelos valores do sensor --
+CREATE TABLE releValor(
+	idReleValor			INT		AUTO_INCREMENT	NOT NULL,
+    valor				INT		NOT NULL,
+	dataHorario			DATE	NOT NULL,
+    idRele				INT		NOT NULL,
+    CONSTRAINT	pk_rele_valor	PRIMARY KEY	(idReleValor),
+    CONSTRAINT	fk_rele_valor FOREIGN KEY (idRele)
+		REFERENCES rele(idRele)
+
 );
 
 -- Tabela responsável pelos usuarios do aplicativo --
