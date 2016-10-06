@@ -29,7 +29,18 @@
             $sql->execute();
         }
 
-        public function getUser() {
+        public function getUser($id) {
+            $sql = $this->con->prepare("SELECT * FROM userS WHERE idUserS = ?");
+            $sql->bindParam(1, $id);
+            $sql->execute();
+            $row = $sql->fetch();
             
+            $user = new User();
+            $user->setIdUser((int)$row['idUserS']);
+            $user->setNome($row['nome']);
+            $user->setLogin($row['login']);
+            $user->setSenha($row['senha']);
+            
+            return $user;
         }
     }
