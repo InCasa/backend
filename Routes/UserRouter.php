@@ -11,7 +11,7 @@
         $userDAO = new UserDAO();
         $user = $userDAO->getUser($id);
         
-        $json = array('id'=>$user->getId(), 'nome'=>$user->getNome(), 'login'=>$user->getLogin());
+        $json = array('id'=>$user->getIdUser(), 'nome'=>$user->getNome(), 'login'=>$user->getLogin());
         
 		return json_encode($json);
 	});
