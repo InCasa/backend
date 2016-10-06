@@ -26,8 +26,17 @@
             $sql->execute();
         }
 
-        public function getAplicativo() {
+        public function getAplicativo($id) {            
+            $sql = $this->con->prepare("SELECT * FROM aplicativo WHERE idAplicativo = ?");
+            $sql->bindParam(1, $id);
+            $sql->execute();
+            $row = $sql->fetch();
             
+            $aplicativo = new Aplicativo();
+            $aplicativo->setIdAplicativo((int)$row['idAplicativo']);
+            $aplicativo->setMAC($row['mac']);            
+            
+            return $aplicativo;
         }
 
 }
