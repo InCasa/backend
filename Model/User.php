@@ -9,7 +9,7 @@
             
         }
         
-        public function getId(){
+        public function getIdUser(){
             return $this->idUser;
         }
         

@@ -48,7 +48,27 @@
             $sql->execute();
         }
 
-        public function getArduino() {
+        public function getArduino($id) {
+            $sql = $this->con->prepare("SELECT * FROM arduino WHERE idArduino = ?");
+            $sql->bindParam(1, $id);
+            $sql->execute();
+            $row = $sql->fetch();
             
+            $arduino = new Arduino();
+            $arduino->setIdArduino((int)$row['idArduino']);
+            $arduino->setIp($row['ip']);
+            $arduino->setMAC($row['mac']);
+            $arduino->setGateway($row['gateway']);
+            $arduino->setMask($row['mask']);
+            $arduino->setPorta($row['porta']);
+            $arduino->setCod($row['cod']);
+            $arduino->setPinoDHT22($row['pinDHT22']);
+            $arduino->setPinoRele1($row['pinRELE1']);
+            $arduino->setPinoRele2($row['pinRELE2']);
+            $arduino->setPinoRele3($row['pinRELE3']);
+            $arduino->setPinoRele4($row['pinRELE4']);
+            $arduino->setPinoLDR($row['pinLDR']);
+            
+            return $arduino;
         }
     }
