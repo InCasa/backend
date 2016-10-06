@@ -60,7 +60,7 @@
         }
         
         public function getPorta(){
-            return $this->porta;
+            return $this->Porta;
         }
 
         public function getCod(){

@@ -12,8 +12,8 @@
         $arduino = $arduinoDAO->getArduino($id);
         
         $json = array('id'=>$arduino->getIdArduino(), 'ip'=>$arduino->getIP(), 'mac'=>$arduino->getMAC(), 'gateway'=>$arduino->getGateway(),
-        'mask'=>$arduino->getMask(), 'PinoDHT'=>$arduino->getPinoDHT(), 'PinoRele1'=>$arduino->getPinoRele1(), 'PinoRele2'=>$arduino->getPinoRele2(), 
-        'PinoRele3'=>$arduino->getPinoRele3(), 'PinoRele4'=>$arduino->getPinoRele4(), 'PinoLDR'=>$arduino->getPinoLDR(), 'porta'=>$arduino->getPorta(), 'cod'=>$arduino->getCod());
+        'mask'=>$arduino->getMask(), 'PinoDHT'=>$arduino->getPinoDHT(), 'PinoRele1'=>$arduino->getPinoRele1(), 'PinoRele2'=>$arduino->getPinoRele2(), 'PinoRele3'=>$arduino->getPinoRele3(), 'PinoRele4'=>$arduino->getPinoRele4(),
+        'PinoLDR'=>$arduino->getPinoLDR(), 'porta'=>$arduino->getPorta(), 'cod'=>$arduino->getCod());
         
 		return json_encode($json);
 	});
