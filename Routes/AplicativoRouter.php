@@ -5,6 +5,17 @@
 		return "Rota GET aplicativo";
 	});
     
+    $app->get('/aplicativo/{id}',  function ($request, $response) {
+        $id = $request->getAttribute('id');
+        
+        $aplicativoDAO = new AplicativoDAO();
+        $aplicativo = $aplicativoDAO->getAplicativo($id);
+        
+        $json = array('id'=>$aplicativo->getIdAplicativo(), 'mac'=>$aplicativo->getMAC());
+        
+		return json_encode($json);
+	});
+    
     $app->post('/aplicativo', function() {
         return "Rota POST aplicativo";
     })->add($validJson);

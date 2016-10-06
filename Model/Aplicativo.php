@@ -13,7 +13,7 @@
         }
         
         public function getMAC(){
-            return $this->mac;
+            return $this->MAC;
         }
 
         public function getIdAplicativo(){
