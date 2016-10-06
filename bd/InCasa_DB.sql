@@ -14,8 +14,8 @@ CREATE TABLE aplicativo(
 -- Tabela responsável pelas configurações do Arduino --
 CREATE TABLE arduino(
 	idArduino	INT				AUTO_INCREMENT NOT NULL,
-	ip			INT				NOT NULL,
-    mac			VARCHAR(15)		NOT NULL,
+	ip			VARCHAR(15)		NOT NULL,
+    mac			VARCHAR(17)		NOT NULL,
 	gateway		VARCHAR(15)		NOT NULL,
 	mask		VARCHAR(15)		NOT NULL,
 	porta		VARCHAR(15)		NOT NULL,
