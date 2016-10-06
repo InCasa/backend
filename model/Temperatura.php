@@ -4,8 +4,7 @@
     class Temperatura {
         private $idTemperatura;
         private $nome;
-        private $descricao;
-        private $valor;        
+        private $descricao;               
         
         public function __construct(){
                         
@@ -17,11 +16,7 @@
         
         public function getDescricao(){
             return $this->descricao;
-        }
-        
-        public function getValor(){
-            return $this->valor;
-        }
+        }                
 
         public function getIdTemperatura(){
             return $this->idTemperatura;
@@ -37,10 +32,6 @@
 
         public function setDescricao($descricao) {
             $this->descricao = $descricao;
-        }
-
-        public function setValor($valor) {
-            $this->valor = $valor;
-        }
+        }        
 
     }

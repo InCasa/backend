@@ -4,8 +4,7 @@
 	
 		private $idLuminosidade;
 		private $nome;
-		private $descricao;
-		private $valor;
+		private $descricao;		
 		
 		public function __construct() {
 			
@@ -22,11 +21,7 @@
 		public function getDescricao() {
 			return $this->descricao;
 		}
-		
-		public function getValor() {
-			return $this->valor;
-		}	
-		
+							
 		function setIdLuminosidade($idLuminosidade) {
 			$this->idLuminosidade = $idLuminosidade;
 		}
@@ -37,10 +32,6 @@
 
 		function setDescricao($descricao) {
 			$this->descricao = $descricao;
-		}
-
-		function setValor($valor) {
-			$this->valor = $valor;
-		}
+		}		
 	
 	}
