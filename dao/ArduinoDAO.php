@@ -61,13 +61,13 @@
             $arduino->setGateway($row['gateway']);
             $arduino->setMask($row['mask']);
             $arduino->setPorta($row['porta']);
-            $arduino->setCod($row['cod']);
-            $arduino->setPinoDHT22($row['pinDHT22']);
-            $arduino->setPinoRele1($row['pinRELE1']);
-            $arduino->setPinoRele2($row['pinRELE2']);
-            $arduino->setPinoRele3($row['pinRELE3']);
-            $arduino->setPinoRele4($row['pinRELE4']);
-            $arduino->setPinoLDR($row['pinLDR']);
+            $arduino->setCod((int)$row['cod']);
+            $arduino->setPinoDHT22((int)$row['pinDHT22']);
+            $arduino->setPinoRele1((int)$row['pinRELE1']);
+            $arduino->setPinoRele2((int)$row['pinRELE2']);
+            $arduino->setPinoRele3((int)$row['pinRELE3']);
+            $arduino->setPinoRele4((int)$row['pinRELE4']);
+            $arduino->setPinoLDR((int)$row['pinLDR']);
             
             return $arduino;
         }

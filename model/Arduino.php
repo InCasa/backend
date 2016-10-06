@@ -5,7 +5,7 @@
         private $MAC;
         private $gateway;
         private $mask;
-        private $Porta;
+        private $porta;
         private $cod;
         
         private $PinoDHT22;
@@ -91,8 +91,8 @@
             $this->mask = $mask;
         }
 
-        function setPorta($Porta) {
-            $this->Porta = $Porta;
+        function setPorta($porta) {
+            $this->porta = $porta;
         }
 
         function setCod($cod) {
