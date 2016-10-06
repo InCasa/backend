@@ -33,18 +33,38 @@ CREATE TABLE arduino(
 CREATE TABLE sensorLuminosidade(
 	idSensor	INT				AUTO_INCREMENT NOT NULL,
     nome		VARCHAR(12)		NOT NULL,
-	descricao	VARCHAR(40)		NOT NULL,
-	valor		DOUBLE			NOT NULL,	
+	descricao	VARCHAR(40)		NOT NULL,	
 	CONSTRAINT	pk_sensor_luminosidade	PRIMARY KEY	(idSensor)
+);
+
+-- Tabela responsável pelos valores do sensor --
+CREATE TABLE luminosidadeValor(
+	idLuminosidadeValor		INT		AUTO_INCREMENT	NOT NULL,
+    valor					DOUBLE	NOT NULL,
+	dataHorario				DATE	NOT NULL,
+    idSensorLuminosidade	INT		NOT NULL,
+    CONSTRAINT	pk_luminosidade_valor	PRIMARY KEY	(idLuminosidadeValor),
+    CONSTRAINT	fk_sensor_luminosidade FOREIGN KEY (idSensorLuminosidade)
+		REFERENCES sensorLuminosidade(idSensor)
 );
 
 -- Tabela responsável pelas informações do sensor --
 CREATE TABLE sensorTemperatura(
 	idSensor	INT				AUTO_INCREMENT NOT NULL,
     nome		VARCHAR(12)		NOT NULL,
-	descricao	VARCHAR(40)		NOT NULL,	
-	valor		DOUBLE			NOT NULL,
+	descricao	VARCHAR(40)		NOT NULL,		
 	CONSTRAINT	pk_sensor_temperatura	PRIMARY KEY	(idSensor)
+);
+
+-- Tabela responsável pelos valores do sensor --
+CREATE TABLE temperaturaValor(
+	idTemperaturaValor		INT		AUTO_INCREMENT	NOT NULL,
+    valor					DOUBLE	NOT NULL,
+	dataHorario				DATE	NOT NULL,
+    idSensorTemperatura		INT		NOT NULL,
+    CONSTRAINT	pk_temperatura_valor	PRIMARY KEY	(idTemperaturaValor),
+    CONSTRAINT	fk_sensor_temperatura FOREIGN KEY (idSensorTemperatura)
+		REFERENCES sensorTemperatura(idSensor)
 );
 
 -- Tabela responsável pelas informações do sensor --
@@ -54,6 +74,17 @@ CREATE TABLE sensorUmidade(
 	descricao	VARCHAR(40)		NOT NULL,
 	valor		DOUBLE			NOT NULL,
 	CONSTRAINT	pk_sensor_umidade	PRIMARY KEY	(idSensor)
+);
+
+-- Tabela responsável pelos valores do sensor --
+CREATE TABLE umidadeValor(
+	idUmidadeValor			INT		AUTO_INCREMENT	NOT NULL,
+    valor					DOUBLE	NOT NULL,
+	dataHorario				DATE	NOT NULL,
+    idSensorUmidade			INT		NOT NULL,
+    CONSTRAINT	pk_umidade_valor	PRIMARY KEY	(idUmidadeValor),
+    CONSTRAINT	fk_sensor_umidade FOREIGN KEY (idSensorUmidade)
+		REFERENCES sensorUmidade(idSensor)
 );
 
 -- Tabela responsável pelas informações do rele --
