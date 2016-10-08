@@ -39,10 +39,10 @@ CREATE TABLE sensorLuminosidade(
 
 -- Tabela responsável pelos valores do sensor --
 CREATE TABLE luminosidadeValor(
-	idLuminosidadeValor		INT		AUTO_INCREMENT	NOT NULL,
-    valor					DOUBLE	NOT NULL,
-	dataHorario				DATE	NOT NULL,
-    idSensorLuminosidade	INT		NOT NULL,
+	idLuminosidadeValor		INT			AUTO_INCREMENT	NOT NULL,
+    valor					DOUBLE		NOT NULL,
+	dataHorario				DATETIME	NOT NULL,
+    idSensorLuminosidade	INT			NOT NULL,
     CONSTRAINT	pk_luminosidade_valor	PRIMARY KEY	(idLuminosidadeValor),
     CONSTRAINT	fk_sensor_luminosidade FOREIGN KEY (idSensorLuminosidade)
 		REFERENCES sensorLuminosidade(idSensor)
@@ -58,10 +58,10 @@ CREATE TABLE sensorTemperatura(
 
 -- Tabela responsável pelos valores do sensor --
 CREATE TABLE temperaturaValor(
-	idTemperaturaValor		INT		AUTO_INCREMENT	NOT NULL,
-    valor					DOUBLE	NOT NULL,
-	dataHorario				DATE	NOT NULL,
-    idSensorTemperatura		INT		NOT NULL,
+	idTemperaturaValor		INT			AUTO_INCREMENT	NOT NULL,
+    valor					DOUBLE		NOT NULL,
+	dataHorario				DATETIME	NOT NULL,
+    idSensorTemperatura		INT			NOT NULL,
     CONSTRAINT	pk_temperatura_valor	PRIMARY KEY	(idTemperaturaValor),
     CONSTRAINT	fk_sensor_temperatura FOREIGN KEY (idSensorTemperatura)
 		REFERENCES sensorTemperatura(idSensor)
@@ -77,10 +77,10 @@ CREATE TABLE sensorUmidade(
 
 -- Tabela responsável pelos valores do sensor --
 CREATE TABLE umidadeValor(
-	idUmidadeValor			INT		AUTO_INCREMENT	NOT NULL,
-    valor					DOUBLE	NOT NULL,
-	dataHorario				DATE	NOT NULL,
-    idSensorUmidade			INT		NOT NULL,
+	idUmidadeValor			INT			AUTO_INCREMENT	NOT NULL,
+    valor					DOUBLE		NOT NULL,
+	dataHorario				DATETIME	NOT NULL,
+    idSensorUmidade			INT			NOT NULL,
     CONSTRAINT	pk_umidade_valor	PRIMARY KEY	(idUmidadeValor),
     CONSTRAINT	fk_sensor_umidade FOREIGN KEY (idSensorUmidade)
 		REFERENCES sensorUmidade(idSensor)
@@ -97,10 +97,10 @@ CREATE TABLE rele(
 
 -- Tabela responsável pelos valores do sensor --
 CREATE TABLE releValor(
-	idReleValor			INT		AUTO_INCREMENT	NOT NULL,
-    valor				INT		NOT NULL,
-	dataHorario			DATE	NOT NULL,
-    idRele				INT		NOT NULL,
+	idReleValor			INT			AUTO_INCREMENT	NOT NULL,
+    valor				INT			NOT NULL,
+	dataHorario			DATETIME	NOT NULL,
+    idRele				INT			NOT NULL,
     CONSTRAINT	pk_rele_valor	PRIMARY KEY	(idReleValor),
     CONSTRAINT	fk_rele_valor FOREIGN KEY (idRele)
 		REFERENCES rele(idRele)

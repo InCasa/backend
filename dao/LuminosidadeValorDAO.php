@@ -9,10 +9,9 @@
 			
 		public function create($luminosidadeValor) {
             if(!empty($luminosidadeValor->getIdLuminosidade()) {
-                $sql = $this->con->prepare("INSERT INTO luminosidadeValor(valor, dataHorario, idSensorLuminosidade) VALUES (?, ?, ?)");
-                $sql->bindParam(1, $luminosidadeValor->getValor());
-                $sql->bindParam(2, $luminosidadeValor->getDataHorario());
-                $sql->bindParam(3, $luminosidadeValor->getIdSensorLuminosidade());
+                $sql = $this->con->prepare("INSERT INTO luminosidadeValor(valor, dataHorario, idSensorLuminosidade) VALUES (?, now(), ?)");
+                $sql->bindParam(1, $luminosidadeValor->getValor());                
+                $sql->bindParam(2, $luminosidadeValor->getIdSensorLuminosidade());
                 $sql->execute();
             } else {
                 return "erro";
