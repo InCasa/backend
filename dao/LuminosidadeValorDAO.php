@@ -41,8 +41,19 @@
             }                                    			
 		}
 
-		public function getLuminosidadeValor() {
-			
+		public function getLuminosidadeValor($id) {
+			    $sql = $this->con->prepare("SELECT * FROM luminosidadeValor WHERE idLuminosidadeValor = ?");
+			    $sql->bindParam(1, $id);
+			    $sql->execute();
+                $row = $sql->fetch();
+                
+                $luminosidadeValor = new LuminosidadeValor();
+                $luminosidadeValor->setIdLuminosidadeValor((int)$row['idLuminosidadeValor']);
+                $luminosidadeValor->setValor((double)$row['valor']);
+                $luminosidadeValor->setDataHorario($row['dataHorario']);
+                $luminosidadeValor->setIdSensorLuminosidade((int)$row['idSensorLuminosidade']);
+                
+                return $luminosidadeValor;
 		}
 							
 	}
