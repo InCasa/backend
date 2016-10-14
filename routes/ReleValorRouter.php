@@ -1,19 +1,37 @@
 <?php
 	global $app;
 
-    $app->get('/releValor/{id}',  function () {	
+    $app->get('/releValor',  function () {	
 		return "Rota GET releValor";
 	});
     
-    $app->post('/releValor', function() {
-        return "Rota POST releValor";
-    })->add($validJson);
+    $app->get('/releValor/{id}',  function ($request, $response) {	
+		$id = $request->getAttribute('id');
+        
+        $releValorDAO = new ReleValorDAO();
+        $releValor = $releValorDAO->getReleValor($id);
+        
+        $json = array('id'=>$releValor->getIdReleValor(),
+        'valor'=>$releValor->getValor(),
+        'DataHorario'=>$releValor->getDataHorario(),
+        'idRele'=>$releValor->getIdRele());
+        return json_encode($json);
+	});
     
-    $app->put('/releValor/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT releValor";
+    $app->post('/releValor', function($request, $response) {
+        $releValor = new ReleValor();
+        
+        $body = $request->getParsedBody();
+        
+        $releValor->setValor($body['valor']);
+        $releValor->setIdRele($body['idRele']);
+        
+        $releValorDAO = new ReleValorDAO();
+        $releValorDAO->create($releValor);
+        
+        return $response;
     })->add($validJson);
-    
+        
     $app->delete('/releValor/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE releValor";
     });
