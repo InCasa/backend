@@ -19,8 +19,18 @@
         return json_encode($json);
 	});    
     
-    $app->post('/luminosidadeValor', function() {
-        return "Rota POST luminosidadeValor";
+    $app->post('/luminosidadeValor', function($request, $response) {
+        $luminosidadeValor = new LuminosidadeValor();
+        
+        $body = $request->getParsedBody();
+        
+        $luminosidadeValor->setValor($body['valor']);
+        $luminosidadeValor->setIdSensorLuminosidade($body['idLuminosidade']);
+        
+        $luminosidadeValorDAO = new LuminosidadeValorDAO();
+        $luminosidadeValorDAO->create($luminosidadeValor);
+        
+        return $response;
     })->add($validJson);
     
     $app->put('/luminosidadeValor/update/{id}',function($request, $response, $args) {

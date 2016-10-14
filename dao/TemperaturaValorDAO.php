@@ -8,11 +8,10 @@
         }
             
         public function create($temperaturaValor) {
-            if(!empty($temperatura->getIdTemperatura())) {
-                $sql = $this->con->prepare("INSERT INTO temperaturaValor(valor, dataHorario, idSensorTemperatura) VALUES (?, ?, ?)");
+            if(!empty($temperaturaValor->getIdTemperatura())) {
+                $sql = $this->con->prepare("INSERT INTO temperaturaValor(valor, dataHorario, idSensorTemperatura) VALUES (?, now(), ?)");
                 $sql->bindParam(1, $temperaturaValor->getValor());
-                $sql->bindParam(2, $temperaturaValor->getDataHorario());
-                $sql->bindParam(3, $temperaturaValor->getIdTemperatura());
+                $sql->bindParam(2, $temperaturaValor->getIdTemperatura());
                 $sql->execute();   
             } else {
                 return "erro";
@@ -41,10 +40,10 @@
             $row = $sql->fetch();
             
             $temperaturaValor = new TemperaturaValor();
-            $temperaturaValor-setIdLuminosidadeValor((int)$row['idTemperaturaValor']);
+            $temperaturaValor->setIdTemperaturaValor((int)$row['idTemperaturaValor']);
             $temperaturaValor->setValor($row['valor']);
             $temperaturaValor->setDataHorario($row['dataHorario']);
-            $temperaturaValor->setIdSensorLuminosidade((int)$row['idSensorTemperatura']);
+            $temperaturaValor->setIdTemperatura((int)$row['idSensorTemperatura']);
             
             return $temperaturaValor;
         }

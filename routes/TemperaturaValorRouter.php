@@ -25,7 +25,6 @@
         $body = $request->getParsedBody();
         
         $temperaturaValor->setValor($body['valor']);
-        $temperaturaValor->setDataHorario($body['DataHorario']);
         $temperaturaValor->setIdTemperatura($body['idTemperatura']);
         
         $temperaturaValorDAO = new TemperaturaValorDAO();

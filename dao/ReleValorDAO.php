@@ -32,10 +32,10 @@
             $row = $sql->fetch();
             
             $releValor = new ReleValor();
-            $releValor->setIdRele((int)$row['idReleValor']);
+            $releValor->setIdRele((int)$row['idRele']);
             $releValor->setValor((int)$row['valor']);
             $releValor->setDataHorario($row['dataHorario']);
-            $releValor->setIdReleValor((int)$row['idRele']);
+            $releValor->setIdReleValor((int)$row['idReleValor']);
             
             return $releValor;
         }
