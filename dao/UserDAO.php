@@ -19,13 +19,13 @@
             $sql->bindParam(1, $user->getNome());
             $sql->bindParam(2, $user->getLogin());
             $sql->bindParam(3, $user->getSenha());
-            $sql->bindParam(4, $user->getId());
+            $sql->bindParam(4, $user->getIdUser());
             $sql->execute();             
         }
 
         public function delete($user) {
             $sql = $this->con->prepare("DELETE FROM userS WHERE idUserS = ?");
-            $sql->bindParam(1, $user->getId());
+            $sql->bindParam(1, $user->getIdUser());
             $sql->execute();
         }
 

@@ -33,9 +33,21 @@
         
 	})->add($validJson);
         
-    $app->put('/user/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT user";
+    $app->put('/user/update/{id}',function($request, $response) {
+        $id = $request->getAttribute('id');
+        
+        $body = $request->getParsedBody();
+        
+        $userDAO = new UserDAO();
+        $user = $userDAO->getUser($id);
+        
+        $user->setNome($body['nome']);
+        $user->setLogin($body['login']);
+        $user->setSenha($body['senha']);
+        
+        $userDAO->update($user);
+        
+        return $response;
     })->add($validJson);
     
     $app->delete('/user/delete/{id}', function($request, $response, $args) {
