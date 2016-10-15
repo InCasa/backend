@@ -8,19 +8,17 @@
         }
             
         public function create($temperatura) {
-            $sql = $this->con->prepare("INSERT INTO sensorTemperatura(nome, descricao, valor) VALUES (?, ?, ?)");
+            $sql = $this->con->prepare("INSERT INTO sensorTemperatura(nome, descricao) VALUES (?, ?)");
             $sql->bindParam(1, $temperatura->getNome());
             $sql->bindParam(2, $temperatura->getDescricao());
-            $sql->bindParam(3, $temperatura->getValor());
             $sql->execute();            
         }
 
         public function update($temperatura) {
-            $sql = $this->con->prepare("UPDATE sensorTemperatura SET nome = ?, descricao = ?, valor = ? WHERE idSensor = ?");
+            $sql = $this->con->prepare("UPDATE sensorTemperatura SET nome = ?, descricao = ? WHERE idSensor = ?");
             $sql->bindParam(1, $temperatura->getNome());
             $sql->bindParam(2, $temperatura->getDescricao());
-            $sql->bindParam(3, $temperatura->getValor());
-            $sql->bindParam(4, $temperatura->getIdTemperatura());
+            $sql->bindParam(3, $temperatura->getIdTemperatura());
             $sql->execute();             
         }
 
@@ -30,8 +28,19 @@
             $sql->execute();
         }
 
-        public function getTemperatura() {
+        public function getTemperatura($id) {
+            $sql = $this->con->prepare("SELECT * FROM sensorTemperatura WHERE idSensor = ?");
+            $sql->bindParam(1, $id);
+            $sql->execute();
+            $row = $sql->fetch();
             
-        }
+            $temperatura = new Temperatura();
+            $temperatura->setIdTemperatura((int)$row['idSensor']);
+            $temperatura->setNome($row['nome']);
+            $temperatura->setDescricao($row['descricao']);
+            
+            return $temperatura;
+        }   
+        
 
     }

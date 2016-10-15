@@ -18,22 +18,13 @@
             }                        
         }
 
-        public function update($temperaturaValor) {
-            $sql = $this->con->prepare("UPDATE temperaturaValor SET valor = ?, dataHorario = ?, idSensorTemperatura = ? WHERE idTemperaturaValor = ?");
-            $sql->bindParam(1, $temperaturaValor->getValor());
-            $sql->bindParam(2, $temperaturaValor->getDataHorario());
-            $sql->bindParam(3, $temperaturaValor->idSensorTemperatura());
-            $sql->bindParam(4, $temperaturaValor->idTemperaturaValor());
-            $sql->execute();             
-        }
-
         public function delete($temperaturaValor) {
             $sql = $this->con->prepare("DELETE FROM temperaturaValor WHERE idTemperaturaValor = ?");
             $sql->bindParam(1, $temperaturaValor->getIdTemperaturaValor());
             $sql->execute();
         }
 
-        public function getTemperatura($id) {
+        public function getTemperaturaValor($id) {
             $sql = $this->con->prepare("SELECT * FROM temperaturaValor WHERE idTemperaturaValor = ?");
             $sql->bindParam(1, $id);
             $sql->execute();

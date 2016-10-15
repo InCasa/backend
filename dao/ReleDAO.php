@@ -8,7 +8,7 @@
         }
 
         public function create($rele) {
-            $sql = $this->con->prepare("INSERT INTO rele(nome, descricao, porta) VALUES (?, ?, ?)");
+            $sql = $this->con->prepare("INSERT INTO rele (nome, descricao, porta) VALUES (?, ?, ?)");
             $sql->bindParam(1, $rele->getNome());
             $sql->bindParam(2, $rele->getDescricao());
             $sql->bindParam(3, $rele->getPorta());
@@ -30,8 +30,19 @@
             $sql->execute();
         }
 
-        public function getRele() {
+        public function getRele($id) {
+            $sql = $this->con->prepare("SELECT * FROM rele WHERE idRele = ?");
+			$sql->bindParam(1, $id);
+			$sql->execute();
+            $row = $sql->fetch();
             
+            $rele = new Rele();
+            $rele->setIdRele((int)$row['idRele']);
+            $rele->setNome($row['nome']);
+            $rele->setDescricao($row['descricao']);
+            $rele->setPorta((int)$row['porta']);
+            
+            return $rele;
         }
 
     }

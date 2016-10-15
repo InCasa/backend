@@ -16,8 +16,18 @@
 		return json_encode($json);
 	});
     
-    $app->post('/aplicativo', function() {
-        return "Rota POST aplicativo";
+    $app->post('/aplicativo', function($request, $response) {
+        $aplicativo = new Aplicativo();
+        
+        $body = $request->getParsedBody();
+        
+        $aplicativo->setNome($body['nome']);
+        $aplicativo->setMAC($body['mac']);
+        
+        $aplicativoDAO = new AplicativoDAO();
+        $aplicativoDAO->create($aplicativo);
+        
+        return $response;
     })->add($validJson);
     
     $app->put('/aplicativo/update/{id}',function($request, $response, $args) {

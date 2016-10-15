@@ -1,6 +1,4 @@
  <?php
-    require "require.php";
-
     class Temperatura {
         private $idTemperatura;
         private $nome;

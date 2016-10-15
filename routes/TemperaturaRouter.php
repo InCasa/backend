@@ -5,8 +5,31 @@
 		return "Temperatura: " . rand(0, 100);
 	});
     
-    $app->post('/temperatura', function() {
-        return "Rota POST temperatura";
+    $app->get('/temperatura/{id}',  function ($request, $response) {	
+		$id = $request->getAttribute('id');
+        
+        $temperaturaDAO = new TemperaturaDAO();
+        $temperatura = $temperaturaDAO->getTemperatura($id);
+        
+        $json = array('id'=>$temperatura->getIdTemperatura(),
+        'nome'=>$temperatura->getNome(),
+        'descricao'=>$temperatura->getDescricao());
+        
+        return json_encode($json);
+	});
+    
+    $app->post('/temperatura', function($request, $response) {
+        $temperatura = new Temperatura();
+        
+        $body = $request->getParsedBody();
+        
+        $temperatura->setNome($body['nome']);
+        $temperatura->setDescricao($body['descricao']);
+        
+        $temperaturaDAO = new TemperaturaDAO();
+        $temperaturaDAO->create($temperatura);
+        
+        return $response;
     })->add($validJson);
     
     $app->put('/temperatura/update/{id}',function($request, $response, $args) {

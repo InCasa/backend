@@ -9,7 +9,7 @@
         $id = $request->getAttribute('id');
         
         $temperaturaValorDAO = new TemperaturaValorDAO();
-        $temperaturaValor = $temperaturaValorDAO->getTemperatura($id);
+        $temperaturaValor = $temperaturaValorDAO->getTemperaturaValor($id);
         
         $json = array('id'=>$temperaturaValor->getIdTemperaturaValor(), 
         'valor'=>$temperaturaValor->getValor(), 
