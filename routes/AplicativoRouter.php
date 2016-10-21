@@ -30,9 +30,20 @@
         return $response;
     })->add($validJson);
     
-    $app->put('/aplicativo/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT aplicativo";
+    $app->put('/aplicativo/update/{id}',function($request, $response) {
+        $id = $request->getAttribute('id');
+
+        $body = $request->getParsedBody();
+
+        $aplicativoDAO = new AplicativoDAO();
+        $aplicativo = $aplicativoDAO->getAplicativo($id);
+
+        $aplicativo->setNome($body['nome']);
+        $aplicativo->setMAC($body['mac']);
+
+        $aplicativoDAO->update($aplicativo);
+
+        return $response;
     })->add($validJson);
     
     $app->delete('/aplicativo/delete/{id}', function($request, $response, $args) {

@@ -33,9 +33,20 @@
         return $response;
     })->add($validJson);
     
-    $app->put('/luminosidade/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT Luminosidade";
+    $app->put('/luminosidade/update/{id}',function($request, $response) {
+        $id = $request->getAttribute('id');
+
+        $body = $request->getParsedBody();
+
+        $luminosidadeDAO = new LuminosidadeDAO();
+        $luminosidade = $luminosidadeDAO->getLuminosidade($id);
+
+        $luminosidade->setNome($body['nome']);
+        $luminosidade->setDescricao($body['descricao']);
+
+        $luminosidadeDAO->update($luminosidade);
+
+        return $response;
     })->add($validJson);
     
     $app->delete('/luminosidade/delete/{id}', function($request, $response, $args) {

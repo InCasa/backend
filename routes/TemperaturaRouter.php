@@ -32,9 +32,20 @@
         return $response;
     })->add($validJson);
     
-    $app->put('/temperatura/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT temperatura";
+    $app->put('/temperatura/update/{id}',function($request, $response) {
+        $id = $request->getAttribute('id');
+
+        $body = $request->getParsedBody();
+
+        $temperaturaDAO = new TemperaturaDAO();
+        $temperatura = $temperaturaDAO->getTemperatura($id);
+
+        $temperatura->setNome($body['nome']);
+        $temperatura->setDescricao($body['descricao']);
+
+        $temperaturaDAO->update($temperatura);
+
+        return $response;
     })->add($validJson);
     
     $app->delete('/temperatura/delete/{id}', function($request, $response, $args) {

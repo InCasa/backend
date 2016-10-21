@@ -30,9 +30,21 @@
         return json_encode($json);
 	});
     
-    $app->put('/rele/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT Rele";
+    $app->put('/rele/update/{id}',function($request, $response) {
+        $id = $request->getAttribute('id');
+
+        $body = $request->getParsedBody();
+
+        $releDAO = new ReleDAO();
+        $rele = $releDAO->getRele($id);
+
+        $rele->setNome($body['nome']);
+        $rele->setDescricao($body['descricao']);
+        $rele->setPorta($body['porta']);
+
+        $releDAO->update($rele);
+
+        return $response;
     })->add($validJson);
     
     $app->delete('/rele/delete/{id}', function($request, $response, $args) {

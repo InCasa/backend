@@ -32,9 +32,20 @@
         return $response;
     })->add($validJson);
     
-    $app->put('/umidade/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT umidade";
+    $app->put('/umidade/update/{id}',function($request, $response) {
+        $id = $request->getAttribute('id');
+
+        $body = $request->getParsedBody();
+
+        $umidadeDAO = new UmidadeDAO();
+        $umidade = $umidadeDAO->getUmidade($id);
+
+        $umidade->setNome($body['nome']);
+        $umidade->setDescricao($body['descricao']);
+
+        $umidadeDAO->update($umidade);
+
+        return $response;
     })->add($validJson);
     
     $app->delete('/umidade/delete/{id}', function($request, $response, $args) {
