@@ -45,4 +45,22 @@
             return $rele;
         }
 
+        public function getAll(){
+            $reles = array();
+
+            $sql = "SELECT * FROM rele";
+
+            foreach ($this->con->query($sql) as $row) {
+                $rele = new Rele();
+                $rele->setIdRele((int)$row['idRele']);
+                $rele->setNome($row['nome']);
+                $rele->setDescricao($row['descricao']);
+                $rele->setPorta((int)$row['porta']);
+
+                $reles[] = $rele;
+            }
+
+            return $reles;
+        }
+
     }

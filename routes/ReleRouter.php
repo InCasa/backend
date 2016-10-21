@@ -15,6 +15,22 @@
         
         return $response;
     })->add($validJson);
+
+    $app->get('/rele',  function ($request, $response) {			
+                
+        $releDAO = new ReleDAO();
+        $reles = array();
+        $reles = $releDAO->getAll();
+        
+        foreach ($reles as $rele) {
+            $json = array('id'=>$rele->getIdRele(),
+            'nome'=>$rele->getNome(),
+            'descricao'=>$rele->getDescricao(),
+            'porta'=>$rele->getPorta());
+        }
+        
+        return json_encode($json);
+	});
     
     $app->get('/rele/{id}',  function ($request, $response) {			
         $id = $request->getAttribute('id');
