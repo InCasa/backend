@@ -107,6 +107,25 @@ CREATE TABLE releValor(
 
 );
 
+-- Tabela responsável pelas informações do sensor --
+CREATE TABLE sensorPresenca(
+	idSensor	INT				AUTO_INCREMENT NOT NULL,
+    nome		VARCHAR(12)		NOT NULL,
+	descricao	VARCHAR(40)		NOT NULL,	
+	CONSTRAINT	pk_sensor_presenca	PRIMARY KEY	(idSensor)
+);
+
+-- Tabela responsável pelos valores do sensor --
+CREATE TABLE presencaValor(
+	idPresencaValor			INT			AUTO_INCREMENT	NOT NULL,
+    valor					DOUBLE		NOT NULL,
+	dataHorario				DATETIME	NOT NULL,
+    idSensorPresenca		INT			NOT NULL,
+    CONSTRAINT	pk_presenca_valor	PRIMARY KEY	(idPresencaValor),
+    CONSTRAINT	fk_sensor_presenca FOREIGN KEY (idSensorPresenca)
+		REFERENCES sensorPresenca(idSensor)
+);
+
 -- Tabela responsável pelos usuarios do aplicativo --
 CREATE TABLE userS(
 	idUserS	INT				AUTO_INCREMENT	NOT NULL,
