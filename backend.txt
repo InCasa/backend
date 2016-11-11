@@ -1,0 +1,37 @@
+Backend Funcionalidades 
+
+Model
+OK	Aplicativo
+OK	Arduino
+OK	User
+OK	Temperatura
+OK	Umidade
+OK	Luminosidade
+OK	Presença
+OK	Rele
+
+
+Routes
+	Aplicativo
+	Arduino
+	User
+	Temperatura
+	Umidade
+	Luminosidade
+	Presença
+	Rele
+
+
+DAO
+	Aplicativo
+	Arduino
+	User
+	Temperatura
+	Umidade
+	Luminosidade
+	Presença
+	Rele
+	
+Utils
+OK	ValidJson
+	Autenticação
