@@ -32,6 +32,27 @@
         return $response;
         
 	})->add($validJson);
+    
+    $app->post('/userLogin',  function ($request, $response, $args) {	
+		$body = $request->getParsedBody();
+              
+        $login = $body['login'];
+        $senha = $body['senha'];
+
+        $userDAO = new UserDAO();
+        if($userDAO->getUserLogin($login, $senha)) {
+            $response->getBody()->write("Logado");
+            return $response;
+        } else {
+            $response->getBody()->write("Errou");
+            return $response;
+        }
+
+                
+
+        //
+        
+	})->add($validJson);
         
     $app->put('/user/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');

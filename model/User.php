@@ -38,7 +38,7 @@
         }
 
         public function setSenha($senha) {
-            $this->senha = $senha;
+            $this->senha = crypt($senha, "$2a$08$" . substr(sha1(mt_rand()), 0, 22) ."$");
         }
         
     }

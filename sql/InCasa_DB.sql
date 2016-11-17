@@ -7,7 +7,8 @@ USE InCasa;
 -- Tabela responsável pelas configurações do app --
 CREATE TABLE aplicativo(
 	idAplicativo	INT				AUTO_INCREMENT NOT NULL,
-    mac			VARCHAR(17)		NOT NULL,
+    nome			VARCHAR(20)		NOT NULL,
+    mac				VARCHAR(17)		NOT NULL,
 	CONSTRAINT	pk_aplicativo	PRIMARY KEY	(idAplicativo)
 );
 
@@ -131,6 +132,6 @@ CREATE TABLE userS(
 	idUserS	INT				AUTO_INCREMENT	NOT NULL,
 	nome		VARCHAR(40)		NOT NULL,
     login		VARCHAR(10)		NOT NULL,
-    senha		VARCHAR(10)		NOT NULL,
+    senha		VARCHAR(60)		NOT NULL,
     CONSTRAINT	pk_userS	PRIMARY KEY	(idUserS)
 );

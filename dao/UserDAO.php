@@ -43,4 +43,28 @@
             
             return $user;
         }
+        
+        public function getUserLogin($login, $senha) {
+            $sql = $this->con->prepare("SELECT senha FROM userS WHERE login = ?");
+            $sql->bindParam(1, $login);        
+            if($sql->execute() && $sql->rowCount() == 1) {
+                $row = $sql->fetch();
+            
+                $password = $row['senha'];
+                
+                if(crypt($senha, $password) == $password) {
+                    echo "Senha ok!";
+                    return true;
+                } else {
+                    echo "Senha não bate!";
+                    return false;
+                }
+                
+            } else {
+                echo "Erro no banco";
+                return false;
+            }                  
+            
+        }
+        
     }
