@@ -22,8 +22,9 @@
         $reles = array();
         $reles = $releDAO->getAll();
         
+        $json = array();
         foreach ($reles as $rele) {
-            $json = array('id'=>$rele->getIdRele(),
+            $json[] = array('id'=>$rele->getIdRele(),
             'nome'=>$rele->getNome(),
             'descricao'=>$rele->getDescricao(),
             'porta'=>$rele->getPorta());

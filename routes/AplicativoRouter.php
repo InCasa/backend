@@ -2,7 +2,18 @@
 	global $app;
 
     $app->get('/aplicativo',  function () {	
-		return "Rota GET aplicativo";
+        $aplicativoDAO = new AplicativoDAO();
+        $aplicativos = array();
+        $aplicativos = $aplicativoDAO->getAll();
+        
+        $json = array();
+        foreach ($aplicativos as $aplicativo) {
+            $json[] = array('id'=>$aplicativo->getIdAplicativo(),
+            'nome'=>$aplicativo->getNome(),
+            'mac'=>$aplicativo->getMAC());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/aplicativo/{id}',  function ($request, $response) {

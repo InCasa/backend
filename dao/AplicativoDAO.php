@@ -38,6 +38,22 @@
             
             return $aplicativo;
         }
+        
+        public function getAll(){
+            $aplicativos = array();
+
+            $sql = "SELECT * FROM aplicativo";
+
+            foreach ($this->con->query($sql) as $row) {
+                $aplicativo = new Aplicativo();
+                $aplicativo->setIdAplicativo((int)$row['idAplicativo']);
+                $aplicativo->setMAC($row['mac']);  
+
+                $aplicativos[] = $aplicativo;
+            }
+
+            return $aplicativos;
+        }
 
 }
     
