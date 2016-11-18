@@ -42,4 +42,21 @@
             return $umidade;
         }
 
+        public function getAll(){
+            $umidades = array();
+
+            $sql = "SELECT * FROM sensorUmidade";
+
+            foreach ($this->con->query($sql) as $row) {
+                $umidade = new Umidade();
+                $umidade->setIdUmidade((int)$row['idSensor']);
+                $umidade->setNome($row['nome']);
+                $umidade->setDescricao($row['descricao']);
+
+                $umidades[] = $umidade;
+            }
+
+            return $umidades;
+        }
+
     }

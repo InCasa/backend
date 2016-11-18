@@ -41,5 +41,22 @@
             
             return $luminosidade;
 		}
+
+		public function getAll(){
+            $luminosidades = array();
+
+            $sql = "SELECT * FROM sensorLuminosidade";
+
+            foreach ($this->con->query($sql) as $row) {
+                $luminosidade = new Luminosidade();
+                $luminosidade->setIdLuminosidade((int)$row['idSensor']);
+				$luminosidade->setNome($row['nome']);
+				$luminosidade->setDescricao($row['descricao']);
+
+                $luminosidades[] = $luminosidade;
+            }
+
+            return $luminosidades;
+        }
 							
 	}			

@@ -2,7 +2,19 @@
 	global $app;
 
     $app->get('/umidadeValor',  function () {	
-		return "umidadeValor: " . rand(0, 100);
+		$umidadeValorDAO = new UmidadeValorDAO();
+        $umidadeValores = array();
+        $umidadeValores = $umidadeValorDAO->getAll();
+        
+        $json = array();
+        foreach ($umidadeValores as $umidadeValor) {
+            $json[] = array('id'=>$umidadeValor->getIdUmidadeValor(), 
+            'valor'=>$umidadeValor->getValor(), 
+            'DataHorario'=>$umidadeValor->getDataHorario(),
+            'idUmidade'=>$umidadeValor->getIdUmidade());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/umidadeValor/{id}',  function ($request, $response) {	

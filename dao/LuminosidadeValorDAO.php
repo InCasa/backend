@@ -42,5 +42,23 @@
                 
                 return $luminosidadeValor;
 		}
+
+        public function getAll(){
+            $luminosidadeValores = array();
+
+            $sql = "SELECT * FROM luminosidadeValor";
+
+            foreach ($this->con->query($sql) as $row) {
+                $luminosidadeValor = new LuminosidadeValor();
+                $luminosidadeValor->setIdLuminosidadeValor((int)$row['idLuminosidadeValor']);
+                $luminosidadeValor->setValor((double)$row['valor']);
+                $luminosidadeValor->setDataHorario($row['dataHorario']);
+                $luminosidadeValor->setIdSensorLuminosidade((int)$row['idSensorLuminosidade']); 
+
+                $luminosidadeValores[] = $luminosidadeValor;
+            }
+
+            return $luminosidadeValores;
+        }
 							
 	}

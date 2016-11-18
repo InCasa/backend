@@ -42,5 +42,23 @@
                 
                 return $presencaValor;
 		}
+
+        public function getAll(){
+            $presencaValores = array();
+
+            $sql = "SELECT * FROM presencaValor";
+
+            foreach ($this->con->query($sql) as $row) {
+                $presencaValor = new PresencaValor();
+                $presencaValor->setIdPresencaValor((int)$row['idPresencaValor']);
+                $presencaValor->setValor((double)$row['valor']);
+                $presencaValor->setDataHorario($row['dataHorario']);
+                $presencaValor->setIdSensorPresenca((int)$row['idSensorPresenca']);
+
+                $presencaValores[] = $presencaValor;
+            }
+
+            return $presencaValores;
+        }
 							
 	}

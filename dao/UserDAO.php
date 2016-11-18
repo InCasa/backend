@@ -43,6 +43,24 @@
             
             return $user;
         }
+
+        public function getAll(){
+            $users = array();
+
+            $sql = "SELECT * FROM userS";
+
+            foreach ($this->con->query($sql) as $row) {
+                $user = new User();
+                $user->setIdUser((int)$row['idUserS']);
+                $user->setNome($row['nome']);
+                $user->setLogin($row['login']);
+                $user->setSenha($row['senha']);
+
+                $users[] = $user;
+            }
+
+            return $users;
+        }
         
         public function getUserLogin($login, $senha) {
             $sql = $this->con->prepare("SELECT senha FROM userS WHERE login = ?");

@@ -1,8 +1,19 @@
 <?php
 	global $app;
     
-        $app->get('/user',  function () {
-        return "Rota GET user";
+    $app->get('/user',  function () {
+        $userDAO = new UserDAO();
+        $users = array();
+        $users = $userDAO->getAll();
+        
+        $json = array();
+        foreach ($users as $user) {
+            $json[] = array('id'=>$user->getIdUser(), 
+            'nome'=>$user->getNome(), 
+            'login'=>$user->getLogin());
+        }
+        
+        return json_encode($json);
 	});
 
     $app->get('/user/{id}',  function ($request, $response) {
@@ -11,7 +22,9 @@
         $userDAO = new UserDAO();
         $user = $userDAO->getUser($id);
         
-        $json = array('id'=>$user->getIdUser(), 'nome'=>$user->getNome(), 'login'=>$user->getLogin());
+        $json = array('id'=>$user->getIdUser(), 
+        'nome'=>$user->getNome(), 
+        'login'=>$user->getLogin());
         
 		return json_encode($json);
 	});

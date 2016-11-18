@@ -2,7 +2,29 @@
 	global $app;
 
     $app->get('/arduino',  function () {	
-		return "Rota GET arduino";
+		$arduinoDAO = new ArduinoDAO();
+        $arduinos = array();
+        $arduinos = $arduinoDAO->getAll();
+        
+        $json = array();
+        foreach ($arduinos as $arduino) {
+            $json[] = array('id'=>$arduino->getIdArduino(), 
+            'ip'=>$arduino->getIP(), 
+            'mac'=>$arduino->getMAC(), 
+            'gateway'=>$arduino->getGateway(),
+            'mask'=>$arduino->getMask(), 
+            'PinoDHT'=>$arduino->getPinoDHT(), 
+            'PinoRele1'=>$arduino->getPinoRele1(), 
+            'PinoRele2'=>$arduino->getPinoRele2(), 
+            'PinoRele3'=>$arduino->getPinoRele3(), 
+            'PinoRele4'=>$arduino->getPinoRele4(),
+            'PinoLDR'=>$arduino->getPinoLDR(), 
+            'porta'=>$arduino->getPorta(), 
+            'cod'=>$arduino->getCod()
+            );
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/arduino/{id}',  function ($request, $response) {

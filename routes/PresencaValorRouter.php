@@ -2,7 +2,19 @@
     global $app;
 
     $app->get('/presencaValor',  function () {			
-        return "presencaValor: " . rand(0, 100);
+        $presencaValorDAO = new PresencaValorDAO();
+        $presencaValores = array();
+        $presencaValores = $presencaValorDAO->getAll();
+        
+        $json = array();
+        foreach ($presencaValores as $presencaValor) {
+            $json[] = array('id'=>$presencaValor->getIdPresencaValor(),
+            'valor'=>$presencaValor->getValor(),
+            'DataHorario'=>$presencaValor->getDataHorario(),
+            'idPresenca'=>$presencaValor->getIdSensorPresenca());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/presencaValor/{id}',  function ($request, $response) {			

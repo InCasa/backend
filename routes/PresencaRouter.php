@@ -2,7 +2,18 @@
 	global $app;
 
     $app->get('/presenca',  function () {			
-        return "Presenca: " . rand(0, 100);
+        $presencaDAO = new PresencaDAO();
+        $presencas = array();
+        $presencas = $presencaDAO->getAll();
+        
+        $json = array();
+        foreach ($presencas as $presenca) {
+            $json[] = array('id'=>$presenca->getIdPresenca(),
+            'nome'=>$presenca->getNome(),
+            'descricao'=>$presenca->getDescricao());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/presenca/{id}',  function ($request, $response) {			

@@ -2,7 +2,18 @@
 	global $app;
 
     $app->get('/temperatura',  function () {	
-		return "Temperatura: " . rand(0, 100);
+		$temperaturaDAO = new TemperaturaDAO();
+        $temperaturas = array();
+        $temperaturas = $temperaturaDAO->getAll();
+        
+        $json = array();
+        foreach ($temperaturas as $temperatura) {
+            $json[] = array('id'=>$temperatura->getIdTemperatura(),
+            'nome'=>$temperatura->getNome(),
+            'descricao'=>$temperatura->getDescricao());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/temperatura/{id}',  function ($request, $response) {	

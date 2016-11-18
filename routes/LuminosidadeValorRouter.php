@@ -2,7 +2,19 @@
     global $app;
 
     $app->get('/luminosidadeValor',  function () {			
-        return "luminosidadeValor: " . rand(0, 100);
+        $luminosidadeValorDAO = new LuminosidadeValorDAO();
+        $luminosidadeValores = array();
+        $luminosidadeValores = $luminosidadeValorDAO->getAll();
+        
+        $json = array();
+        foreach ($luminosidadeValores as $luminosidadeValor) {
+            $json[] = array('id'=>$luminosidadeValor->getIdLuminosidadeValor(),
+            'valor'=>$luminosidadeValor->getValor(),
+            'DataHorario'=>$luminosidadeValor->getDataHorario(),
+            'idLuminosidade'=>$luminosidadeValor->getIdSensorLuminosidade());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/luminosidadeValor/{id}',  function ($request, $response) {			

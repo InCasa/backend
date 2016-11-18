@@ -41,6 +41,23 @@
             
             return $temperatura;
         }   
+
+        public function getAll(){
+            $temperaturas = array();
+
+            $sql = "SELECT * FROM sensorTemperatura";
+
+            foreach ($this->con->query($sql) as $row) {
+                $temperatura = new Temperatura();
+                $temperatura->setIdTemperatura((int)$row['idSensor']);
+                $temperatura->setNome($row['nome']);
+                $temperatura->setDescricao($row['descricao']);
+
+                $temperaturas[] = $temperatura;
+            }
+
+            return $temperaturas;
+        }
         
 
     }

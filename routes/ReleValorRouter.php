@@ -2,7 +2,19 @@
 	global $app;
 
     $app->get('/releValor',  function () {	
-		return "Rota GET releValor";
+		$releValorDAO = new ReleValorDAO();
+        $releValores = array();
+        $releValores = $releValorDAO->getAll();
+        
+        $json = array();
+        foreach ($releValores as $releValor) {
+            $json[] = array('id'=>$releValor->getIdReleValor(),
+            'valor'=>$releValor->getValor(),
+            'DataHorario'=>$releValor->getDataHorario(),
+            'idRele'=>$releValor->getIdRele());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/releValor/{id}',  function ($request, $response) {	

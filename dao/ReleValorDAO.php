@@ -40,4 +40,22 @@
             return $releValor;
         }
 
+        public function getAll(){
+            $releValores = array();
+
+            $sql = "SELECT * FROM releValor";
+
+            foreach ($this->con->query($sql) as $row) {
+                $releValor = new ReleValor();
+                $releValor->setIdRele((int)$row['idRele']);
+                $releValor->setValor((int)$row['valor']);
+                $releValor->setDataHorario($row['dataHorario']);
+                $releValor->setIdReleValor((int)$row['idReleValor']);
+
+                $releValores[] = $releValor;
+            }
+
+            return $releValores;
+        }
+
     }

@@ -2,7 +2,18 @@
 	global $app;
 
     $app->get('/luminosidade',  function () {			
-        return "Luminosidade: " . rand(0, 100);
+        $luminosidadeDAO = new LuminosidadeDAO();
+        $arduinos = array();
+        $luminosidades = $luminosidadeDAO->getAll();
+        
+        $json = array();
+        foreach ($luminosidades as $luminosidade) {
+            $json[] = array('id'=>$luminosidade->getIdLuminosidade(),
+            'nome'=>$luminosidade->getNome(),
+            'descricao'=>$luminosidade->getDescricao());
+        }
+        
+        return json_encode($json);
 	});
     
     $app->get('/luminosidade/{id}',  function ($request, $response) {			

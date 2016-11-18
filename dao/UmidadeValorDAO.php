@@ -39,4 +39,22 @@
             return $umidadeValor;
         }
 
+        public function getAll(){
+            $umidadeValores = array();
+
+            $sql = "SELECT * FROM umidadeValor";
+
+            foreach ($this->con->query($sql) as $row) {
+                $umidadeValor = new UmidadeValor();
+                $umidadeValor->setIdUmidadeValor((int)$row['idUmidadeValor']);
+                $umidadeValor->setValor((double)$row['valor']);
+                $umidadeValor->setDataHorario($row['dataHorario']);
+                $umidadeValor->setIdUmidade((int)$row['idSensorUmidade']);
+
+                $umidadeValores[] = $umidadeValor;
+            }
+
+            return $umidadeValores;
+        }
+
     }
