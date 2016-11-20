@@ -3,11 +3,24 @@
 
     $app->get('/temperaturaValor',  function () {	
 		$temperaturaValorDAO = new TemperaturaValorDAO();
-        $temepraturaValores = array();
-        $temepraturaValores = $temperaturaValorDAO->getAll();
+        $temperaturaValores = array();
+        $temperaturaValores = $temperaturaValorDAO->getAll();
         
         $json = array();
-        foreach ($temepraturaValores as $temperaturaValor) {
+        foreach ($temperaturaValores as $temperaturaValor) {
+            $json[] = array('valor'=>$temperaturaValor->getValor());
+        }
+        
+        return json_encode($json);
+	});
+
+    $app->get('/temperaturaValorDetails',  function () {	
+		$temperaturaValorDAO = new TemperaturaValorDAO();
+        $temperaturaValores = array();
+        $temperaturaValores = $temperaturaValorDAO->getAll();
+        
+        $json = array();
+        foreach ($temperaturaValores as $temperaturaValor) {
             $json[] = array('id'=>$temperaturaValor->getIdTemperaturaValor(), 
             'valor'=>$temperaturaValor->getValor(), 
             'DataHorario'=>$temperaturaValor->getDataHorario(),
