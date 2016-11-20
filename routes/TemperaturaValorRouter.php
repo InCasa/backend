@@ -5,10 +5,8 @@
 		$temperaturaValorDAO = new TemperaturaValorDAO();
         
         $temperaturaValor = $temperaturaValorDAO->getLast();
-        
-        $json = array();
-        
-        $json[] = array('valor'=>$temperaturaValor->getValor());
+		
+        $json = array('valor'=>$temperaturaValor->getValor());
                 
         return json_encode($json);
 	});
