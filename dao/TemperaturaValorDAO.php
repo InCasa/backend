@@ -40,7 +40,7 @@
         }
 
         public function getAll(){
-            $temepraturaValores = array();
+            $temperaturaValores = array();
 
             $sql = "SELECT * FROM temperaturaValor";
 
@@ -51,10 +51,23 @@
                 $temperaturaValor->setDataHorario($row['dataHorario']);
                 $temperaturaValor->setIdTemperatura((int)$row['idSensorTemperatura']);
 
-                $temepraturaValores[] = $temperaturaValor;
+                $temperaturaValores[] = $temperaturaValor;
             }
 
-            return $temepraturaValores;
+            return $temperaturaValores;
+        }
+        
+        public function getLast(){            
+            $sql = "SELECT * FROM temperaturaValor";
+
+            foreach ($this->con->query($sql) as $row) {
+                $temperaturaValor = new TemperaturaValor();               
+                $temperaturaValor->setValor($row['valor']);
+
+                $temperaturaValor = $temperaturaValor;
+            }
+
+            return $temperaturaValor;
         }
 
     }

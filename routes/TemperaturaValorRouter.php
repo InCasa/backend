@@ -3,14 +3,13 @@
 
     $app->get('/temperaturaValor',  function () {	
 		$temperaturaValorDAO = new TemperaturaValorDAO();
-        $temperaturaValores = array();
-        $temperaturaValores = $temperaturaValorDAO->getAll();
+        
+        $temperaturaValor = $temperaturaValorDAO->getLast();
         
         $json = array();
-        foreach ($temperaturaValores as $temperaturaValor) {
-            $json[] = array('valor'=>$temperaturaValor->getValor());
-        }
         
+        $json[] = array('valor'=>$temperaturaValor->getValor());
+                
         return json_encode($json);
 	});
 
