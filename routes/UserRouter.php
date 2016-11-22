@@ -60,12 +60,8 @@
             $response->getBody()->write("Errou");
             return $response;
         }
-
-                
-
-        //
         
-	})->add($validJson);
+	})->add($validJson, $authBasic);
         
     $app->put('/user/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
