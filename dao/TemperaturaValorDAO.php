@@ -58,14 +58,12 @@
         }
         
         public function getLast(){            
-            $sql = "SELECT * FROM temperaturaValor";
-
-            foreach ($this->con->query($sql) as $row) {
-                $temperaturaValor = new TemperaturaValor();               
-                $temperaturaValor->setValor($row['valor']);
-
-                $temperaturaValor = $temperaturaValor;
-            }
+            $sql = $this->con->prepare("SELECT * FROM temperaturaValor ORDER BY idTemperaturaValor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+            $temperaturaValor = new TemperaturaValor();               
+            $temperaturaValor->setValor($row['valor']);
 
             return $temperaturaValor;
         }
