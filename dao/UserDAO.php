@@ -71,15 +71,12 @@
                 $password = $row['senha'];
                 
                 if(crypt($senha, $password) == $password) {
-                    echo "Senha ok!";
                     return true;
                 } else {
-                    echo "Senha não bate!";
                     return false;
                 }
                 
             } else {
-                echo "Erro no banco";
                 return false;
             }                  
             

@@ -5,32 +5,25 @@
 			$next($request, $response);				
 			return $response;
 		} else {			
-			return $response->withJson(array('Message' => 'Invalid contentType'),400);			
+			return $response->withJson(array('Message' => 'Invalid contentType'), 400);			
 		}		
 	};
     
-    $authBasic = function ($request, $response){
+    $authBasic = function ($request, $response, $next){
         $headers = $request->getHeaders();
-        
-        $stringHeader = $headers['Authorization'];
-        $stringHeader = $stringHeader.split(' ')[1].split(':');
-        echo($stringHeader);
-        
-        $login = $stringHeader[0];
-        echo($login);
-        $senha = $stringHeader[1];
-        echo($senha);
-        
+                
+        $login = $headers['PHP_AUTH_USER'][0];
+        $senha = $headers['PHP_AUTH_PW'][0];
+
         $userDAO = new UserDAO();
         
         if($userDAO->getUserLogin($login, $senha)){
-            $newResponse = $response->withStatus(200);
-            return $newResponse;
+            $next($request, $response);				
+			return $response;
         }else{
-            $newResponse = $response->withStatus(203);
-            return $newResponse;
+            return $response->withJson(array('Authorized' => false), 401);	
         }
-    }
+    };
 	
 	foreach(glob("routes/*.php") as $filename){
         include $filename;

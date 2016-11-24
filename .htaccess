@@ -1,7 +1,8 @@
 RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://localhost/backend/$1 [R=307,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
 

@@ -3,7 +3,7 @@
     require 'autoload.php';
     
     $app = new \Slim\App();        
-    
+        
 	include 'routes.php';
 	
     $app->run();
