@@ -9,7 +9,7 @@
         $json = array('valor'=>$temperaturaValor->getValor());
                 
         return json_encode($json);
-	});
+	})->add($authBasic);
 
     $app->get('/temperaturaValorDetails',  function () {	
 		$temperaturaValorDAO = new TemperaturaValorDAO();
