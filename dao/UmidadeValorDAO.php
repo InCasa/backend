@@ -57,4 +57,15 @@
             return $umidadeValores;
         }
 
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM umidadeValor ORDER BY idUmidadeValor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+            $umidadeValor = new UmidadeValor();             
+            $umidadeValor->setValor($row['valor']);
+
+            return $umidadeValor;
+        }
+
     }
