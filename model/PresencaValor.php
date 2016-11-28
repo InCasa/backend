@@ -35,6 +35,7 @@
         }
 
         public function setDataHorario($dataHorario) {
+            $dataHorario = DataFormat::formatDateTime($dataHorario);
             $this->dataHorario = $dataHorario;
         }
 

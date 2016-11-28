@@ -119,7 +119,7 @@ CREATE TABLE sensorPresenca(
 -- Tabela responsável pelos valores do sensor --
 CREATE TABLE presencaValor(
 	idPresencaValor			INT			AUTO_INCREMENT	NOT NULL,
-    valor					DOUBLE		NOT NULL,
+    valor					BOOLEAN		NOT NULL,
 	dataHorario				DATETIME	NOT NULL,
     idSensorPresenca		INT			NOT NULL,
     CONSTRAINT	pk_presenca_valor	PRIMARY KEY	(idPresencaValor),

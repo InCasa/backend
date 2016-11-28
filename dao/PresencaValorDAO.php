@@ -36,7 +36,7 @@
                 
                 $presencaValor = new PresencaValor();
                 $presencaValor->setIdPresencaValor((int)$row['idPresencaValor']);
-                $presencaValor->setValor((double)$row['valor']);
+                $presencaValor->setValor((int)$row['valor']);
                 $presencaValor->setDataHorario($row['dataHorario']);
                 $presencaValor->setIdSensorPresenca((int)$row['idSensorPresenca']);
                 
@@ -51,7 +51,7 @@
             foreach ($this->con->query($sql) as $row) {
                 $presencaValor = new PresencaValor();
                 $presencaValor->setIdPresencaValor((int)$row['idPresencaValor']);
-                $presencaValor->setValor((double)$row['valor']);
+                $presencaValor->setValor((int)$row['valor']);
                 $presencaValor->setDataHorario($row['dataHorario']);
                 $presencaValor->setIdSensorPresenca((int)$row['idSensorPresenca']);
 
