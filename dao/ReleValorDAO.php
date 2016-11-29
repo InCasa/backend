@@ -9,7 +9,7 @@
 
         public function create($releValor) {
             if(!empty($releValor->getIdRele())){
-                $sql = $this->con->prepare("INSERT INTO releValor(valor, dataHorario, idRele) VALUES (?, now(), ?)");
+                $sql = $this->con->prepare("INSERT INTO releValor(valor, idRele) VALUES (?, ?)");
                 $sql->bindParam(1, $releValor->getValor());
                 $sql->bindParam(2, $releValor->getIdRele());
                 $sql->execute();   

@@ -9,7 +9,7 @@
              
         public function create($umidadeValor) {
             if(!empty($umidadeValor->getIdUmidade())){
-            $sql = $this->con->prepare("INSERT INTO umidadeValor(valor, dataHorario, idSensorUmidade) VALUES (?, now(), ?)");
+            $sql = $this->con->prepare("INSERT INTO umidadeValor(valor, idSensorUmidade) VALUES (?, ?)");
             $sql->bindParam(1, $umidadeValor->getValor());
             $sql->bindParam(2, $umidadeValor->getIdUmidade());
             $sql->execute();

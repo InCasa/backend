@@ -9,7 +9,7 @@
             
         public function create($temperaturaValor) {
             if(!empty($temperaturaValor->getIdTemperatura())) {
-                $sql = $this->con->prepare("INSERT INTO temperaturaValor(valor, dataHorario, idSensorTemperatura) VALUES (?, now(), ?)");
+                $sql = $this->con->prepare("INSERT INTO temperaturaValor(valor, idSensorTemperatura) VALUES (?, ?)");
                 $sql->bindParam(1, $temperaturaValor->getValor());
                 $sql->bindParam(2, $temperaturaValor->getIdTemperatura());
                 $sql->execute();   

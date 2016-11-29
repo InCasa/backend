@@ -9,7 +9,7 @@
 			
 		public function create($presencaValor) {
             if(!empty($presencaValor->getIdSensorPresenca())) {
-                $sql = $this->con->prepare("INSERT INTO presencaValor(valor, dataHorario, idSensorPresenca) VALUES (?, now(), ?)");
+                $sql = $this->con->prepare("INSERT INTO presencaValor(valor, idSensorPresenca) VALUES (?, ?)");
                 $sql->bindParam(1, $presencaValor->getValor());                
                 $sql->bindParam(2, $presencaValor->getIdSensorPresenca());
                 $sql->execute();

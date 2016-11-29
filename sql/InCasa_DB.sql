@@ -42,7 +42,7 @@ CREATE TABLE sensorLuminosidade(
 CREATE TABLE luminosidadeValor(
 	idLuminosidadeValor		INT			AUTO_INCREMENT	NOT NULL,
     valor					DOUBLE		NOT NULL,
-	dataHorario				DATETIME	NOT NULL,
+	dataHorario				DATETIME	NOT NULL 	DEFAULT CURRENT_TIMESTAMP,
     idSensorLuminosidade	INT			NOT NULL,
     CONSTRAINT	pk_luminosidade_valor	PRIMARY KEY	(idLuminosidadeValor),
     CONSTRAINT	fk_sensor_luminosidade FOREIGN KEY (idSensorLuminosidade)
@@ -61,7 +61,7 @@ CREATE TABLE sensorTemperatura(
 CREATE TABLE temperaturaValor(
 	idTemperaturaValor		INT			AUTO_INCREMENT	NOT NULL,
     valor					DOUBLE		NOT NULL,
-	dataHorario				DATETIME	NOT NULL,
+	dataHorario				DATETIME	NOT NULL 	DEFAULT CURRENT_TIMESTAMP,
     idSensorTemperatura		INT			NOT NULL,
     CONSTRAINT	pk_temperatura_valor	PRIMARY KEY	(idTemperaturaValor),
     CONSTRAINT	fk_sensor_temperatura FOREIGN KEY (idSensorTemperatura)
@@ -80,7 +80,7 @@ CREATE TABLE sensorUmidade(
 CREATE TABLE umidadeValor(
 	idUmidadeValor			INT			AUTO_INCREMENT	NOT NULL,
     valor					DOUBLE		NOT NULL,
-	dataHorario				DATETIME	NOT NULL,
+	dataHorario				DATETIME	NOT NULL 	DEFAULT CURRENT_TIMESTAMP,
     idSensorUmidade			INT			NOT NULL,
     CONSTRAINT	pk_umidade_valor	PRIMARY KEY	(idUmidadeValor),
     CONSTRAINT	fk_sensor_umidade FOREIGN KEY (idSensorUmidade)
@@ -100,7 +100,7 @@ CREATE TABLE rele(
 CREATE TABLE releValor(
 	idReleValor			INT			AUTO_INCREMENT	NOT NULL,
     valor				INT			NOT NULL,
-	dataHorario			DATETIME	NOT NULL,
+	dataHorario			DATETIME	NOT NULL 	DEFAULT CURRENT_TIMESTAMP,
     idRele				INT			NOT NULL,
     CONSTRAINT	pk_rele_valor	PRIMARY KEY	(idReleValor),
     CONSTRAINT	fk_rele_valor FOREIGN KEY (idRele)
@@ -120,7 +120,7 @@ CREATE TABLE sensorPresenca(
 CREATE TABLE presencaValor(
 	idPresencaValor			INT			AUTO_INCREMENT	NOT NULL,
     valor					BOOLEAN		NOT NULL,
-	dataHorario				DATETIME	NOT NULL,
+	dataHorario				DATETIME	NOT NULL	 DEFAULT CURRENT_TIMESTAMP,
     idSensorPresenca		INT			NOT NULL,
     CONSTRAINT	pk_presenca_valor	PRIMARY KEY	(idPresencaValor),
     CONSTRAINT	fk_sensor_presenca FOREIGN KEY (idSensorPresenca)
