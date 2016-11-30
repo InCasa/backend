@@ -48,7 +48,7 @@
     
     $app->post('/userLogin',  function ($request, $response, $args) {	
         return $response->withJson(array('Authorized' => true));	
-	})->add($validJson)->add($authBasic);
+	})->add($authBasic);
         
     $app->put('/user/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
