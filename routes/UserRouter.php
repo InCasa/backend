@@ -41,13 +41,18 @@
         $userDAO = new UserDAO();
         $userDAO->create($user);
 
-        $response->getBody()->write("Hello,".$user->getNome());
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
         
 	})->add($validJson);
     
-    $app->post('/userLogin',  function ($request, $response, $args) {	
-        return $response->withJson(array('Authorized' => true));	
+    $app->post('/userLogin',  function ($request, $response, $args) {
+        $data = array('Authorized' => true);
+        $newResponse = $response->withJson($data);
+        	
+        return $newResponse;	
 	})->add($authBasic);
         
     $app->put('/user/update/{id}',function($request, $response) {
