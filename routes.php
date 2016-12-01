@@ -11,9 +11,22 @@
     
     $authBasic = function ($request, $response, $next){
         $headers = $request->getHeaders();
-                
-        $login = $headers['PHP_AUTH_USER'][0];
-        $senha = $headers['PHP_AUTH_PW'][0];
+        $login;
+        $senha;
+        $auth;
+
+        if($headers['PHP_AUTH_USER'] != 0){
+            $login = $headers['PHP_AUTH_USER'][0];
+            $senha = $headers['PHP_AUTH_PW'][0];
+        }else{
+            $auth = $headers['Authorization'];
+
+            $auth = substr($auth, -6);
+            $auth = base64_decode($auth);
+            list ($loginAuth, $senhaAuth) = split (':', $auth);
+            $login = loginAuth;
+            $senha = $senhaAuth;
+        }
 
         $userDAO = new UserDAO();
         
