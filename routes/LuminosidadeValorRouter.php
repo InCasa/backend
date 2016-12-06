@@ -3,17 +3,11 @@
 
     $app->get('/luminosidadeValor',  function () {			
         $luminosidadeValorDAO = new LuminosidadeValorDAO();
-        $luminosidadeValores = array();
-        $luminosidadeValores = $luminosidadeValorDAO->getAll();
         
-        $json = array();
-        foreach ($luminosidadeValores as $luminosidadeValor) {
-            $json[] = array('id'=>$luminosidadeValor->getIdLuminosidadeValor(),
-            'valor'=>$luminosidadeValor->getValor(),
-            'DataHorario'=>$luminosidadeValor->getDataHorario(),
-            'idLuminosidade'=>$luminosidadeValor->getIdSensorLuminosidade());
-        }
-        
+        $luminosidadeValor = $luminosidadeValorDAO->getLast();
+		
+        $json = array('valor'=>$luminosidadeValor->getValor());
+                
         return json_encode($json);
 	});
     

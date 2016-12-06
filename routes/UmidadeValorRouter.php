@@ -1,7 +1,7 @@
 <?php
 	global $app;
 
-        $app->get('/umidadeValor',  function () {	
+    $app->get('/umidadeValor',  function () {	
 		$umidadeValorDAO = new UmidadeValorDAO();
         
         $umidadeValor = $umidadeValorDAO->getLast();

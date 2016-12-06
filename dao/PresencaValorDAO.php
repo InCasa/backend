@@ -60,5 +60,16 @@
 
             return $presencaValores;
         }
+
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM presencaValor ORDER BY idPresencaValor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+            $presencaValor = new PresencaValor();             
+            $presencaValor->setValor($row['valor']);
+
+            return $presencaValor;
+        }
 							
 	}

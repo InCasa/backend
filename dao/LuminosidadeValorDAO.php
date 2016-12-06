@@ -60,5 +60,16 @@
 
             return $luminosidadeValores;
         }
+
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM luminosidadeValor ORDER BY idLuminosidadeValor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+            $luminosidadeValor = new LuminosidadeValor();             
+            $luminosidadeValor->setValor($row['valor']);
+
+            return $luminosidadeValor;
+        }
 							
 	}
