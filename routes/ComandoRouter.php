@@ -6,5 +6,6 @@
         $body = $request->getParsedBody();
       
         $comando = $body['comando'];
+        CommandRead::readCommand($comando);
         
     })->add($validJson);
