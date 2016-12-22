@@ -19,8 +19,7 @@
             'PinoRele3'=>$arduino->getPinoRele3(), 
             'PinoRele4'=>$arduino->getPinoRele4(),
             'PinoLDR'=>$arduino->getPinoLDR(), 
-            'porta'=>$arduino->getPorta(), 
-            'cod'=>$arduino->getCod()
+            'porta'=>$arduino->getPorta()
             );
         }
         
@@ -44,8 +43,7 @@
             'PinoRele3'=>$arduino->getPinoRele3(), 
             'PinoRele4'=>$arduino->getPinoRele4(),
             'PinoLDR'=>$arduino->getPinoLDR(), 
-            'porta'=>$arduino->getPorta(), 
-            'cod'=>$arduino->getCod()
+            'porta'=>$arduino->getPorta()
             );
         
 		return json_encode($json);
@@ -61,7 +59,6 @@
         $arduino->setGateway($body['gateway']);
         $arduino->setMask($body['mask']);
         $arduino->setPorta($body['porta']);
-        $arduino->setCod($body['cod']);
         $arduino->setPinoDHT22($body['PinoDHT']);
         $arduino->setPinoRele1($body['PinoRele1']);
         $arduino->setPinoRele2($body['PinoRele2']);
@@ -89,7 +86,6 @@
         $arduino->setGateway($body['gateway']);
         $arduino->setMask($body['mask']);
         $arduino->setPorta($body['porta']);
-        $arduino->setCod($body['cod']);
         $arduino->setPinoDHT22($body['PinoDHT']);
         $arduino->setPinoRele1($body['PinoRele1']);
         $arduino->setPinoRele2($body['PinoRele2']);

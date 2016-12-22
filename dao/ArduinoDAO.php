@@ -8,7 +8,7 @@
         }
 
         public function create($arduino) {
-            $sql = $this->con->prepare("INSERT INTO arduino(ip, mac, gateway, mask, porta, pinDHT22, pinRELE1, pinRELE2, pinRELE3, pinRELE4, pinLDR, cod) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $sql = $this->con->prepare("INSERT INTO arduino(ip, mac, gateway, mask, porta, pinDHT22, pinRELE1, pinRELE2, pinRELE3, pinRELE4, pinLDR) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $sql->bindParam(1, $arduino->getIP());
             $sql->bindParam(2, $arduino->getMAC());
             $sql->bindParam(3, $arduino->getGateway());
@@ -20,12 +20,11 @@
             $sql->bindParam(9, $arduino->getPinoRele3());
             $sql->bindParam(10, $arduino->getPinoRele4());
             $sql->bindParam(11, $arduino->getPinoLDR());
-            $sql->bindParam(12, $arduino->getCod());
             $sql->execute();            
         }
 
         public function update($arduino) {
-            $sql = $this->con->prepare("UPDATE arduino SET ip = ?, mac = ?, gateway = ?, mask = ?, porta = ?, pinDHT22 = ?, pinRELE1 = ?, pinRELE2 = ?, pinRELE3 = ?, pinRELE4 = ?, pinLDR = ?, cod = ? WHERE idArduino = ?");
+            $sql = $this->con->prepare("UPDATE arduino SET ip = ?, mac = ?, gateway = ?, mask = ?, porta = ?, pinDHT22 = ?, pinRELE1 = ?, pinRELE2 = ?, pinRELE3 = ?, pinRELE4 = ?, pinLDR = ? WHERE idArduino = ?");
             $sql->bindParam(1, $arduino->getIP());
             $sql->bindParam(2, $arduino->getMAC());
             $sql->bindParam(3, $arduino->getGateway());
@@ -37,8 +36,7 @@
             $sql->bindParam(9, $arduino->getPinoRele3());
             $sql->bindParam(10, $arduino->getPinoRele4());
             $sql->bindParam(11, $arduino->getPinoLDR());
-            $sql->bindParam(12, $arduino->getCod());
-            $sql->bindParam(13, $arduino->getIdArduino());
+            $sql->bindParam(12, $arduino->getIdArduino());
             $sql->execute();             
         }
 
@@ -61,7 +59,6 @@
             $arduino->setGateway($row['gateway']);
             $arduino->setMask($row['mask']);
             $arduino->setPorta($row['porta']);
-            $arduino->setCod((int)$row['cod']);
             $arduino->setPinoDHT22((int)$row['pinDHT22']);
             $arduino->setPinoRele1((int)$row['pinRELE1']);
             $arduino->setPinoRele2((int)$row['pinRELE2']);
@@ -85,7 +82,6 @@
                 $arduino->setGateway($row['gateway']);
                 $arduino->setMask($row['mask']);
                 $arduino->setPorta($row['porta']);
-                $arduino->setCod((int)$row['cod']);
                 $arduino->setPinoDHT22((int)$row['pinDHT22']);
                 $arduino->setPinoRele1((int)$row['pinRELE1']);
                 $arduino->setPinoRele2((int)$row['pinRELE2']);

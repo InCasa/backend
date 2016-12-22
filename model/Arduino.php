@@ -6,7 +6,6 @@
         private $gateway;
         private $mask;
         private $porta;
-        private $cod;
         
         private $PinoDHT22;
         Private $PinoRele1;
@@ -63,10 +62,6 @@
             return $this->porta;
         }
 
-        public function getCod(){
-            return $this->cod;
-        }
-
         public function getIdArduino(){
             return $this->idArduino;
         }
@@ -93,10 +88,6 @@
 
         function setPorta($porta) {
             $this->porta = $porta;
-        }
-
-        function setCod($cod) {
-            $this->cod = $cod;
         }
 
         function setPinoDHT22($PinoDHT22) {

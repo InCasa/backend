@@ -26,7 +26,6 @@ CREATE TABLE arduino(
 	pinRELE3	INT				NOT NULL,
 	pinRELE4	INT				NOT NULL,
 	pinLDR		INT				NOT NULL,
-	cod			INT				NOT NULL,
     CONSTRAINT	pk_arduino	PRIMARY KEY	(idArduino)
 );
 
