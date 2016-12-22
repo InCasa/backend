@@ -19,6 +19,7 @@
             'PinoRele3'=>$arduino->getPinoRele3(), 
             'PinoRele4'=>$arduino->getPinoRele4(),
             'PinoLDR'=>$arduino->getPinoLDR(), 
+            'PinoPresenca'=>$arduino->getPinoPresenca(), 
             'porta'=>$arduino->getPorta()
             );
         }
@@ -43,6 +44,7 @@
             'PinoRele3'=>$arduino->getPinoRele3(), 
             'PinoRele4'=>$arduino->getPinoRele4(),
             'PinoLDR'=>$arduino->getPinoLDR(), 
+            'PinoPresenca'=>$arduino->getPinoPresenca(), 
             'porta'=>$arduino->getPorta()
             );
         
@@ -65,6 +67,7 @@
         $arduino->setPinoRele3($body['PinoRele3']);
         $arduino->setPinoRele4($body['PinoRele4']);
         $arduino->setPinoLDR($body['PinoLDR']);
+        $arduino->setPinoPresenca($body['PinoPresenca']);
 
         $arduinoDAO = new ArduinoDAO();
         $arduinoDAO->create($arduino);
@@ -92,6 +95,7 @@
         $arduino->setPinoRele3($body['PinoRele3']);
         $arduino->setPinoRele4($body['PinoRele4']);
         $arduino->setPinoLDR($body['PinoLDR']);
+        $arduino->setPinoPresenca($body['PinoPresenca']);
 
         $arduinoDAO->update($arduino);
 

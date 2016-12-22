@@ -8,7 +8,7 @@
         }
 
         public function create($arduino) {
-            $sql = $this->con->prepare("INSERT INTO arduino(ip, mac, gateway, mask, porta, pinDHT22, pinRELE1, pinRELE2, pinRELE3, pinRELE4, pinLDR) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $sql = $this->con->prepare("INSERT INTO arduino(ip, mac, gateway, mask, porta, pinDHT22, pinRELE1, pinRELE2, pinRELE3, pinRELE4, pinLDR, pinPresenca) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $sql->bindParam(1, $arduino->getIP());
             $sql->bindParam(2, $arduino->getMAC());
             $sql->bindParam(3, $arduino->getGateway());
@@ -20,11 +20,12 @@
             $sql->bindParam(9, $arduino->getPinoRele3());
             $sql->bindParam(10, $arduino->getPinoRele4());
             $sql->bindParam(11, $arduino->getPinoLDR());
+            $sql->bindParam(12, $arduino->getPinoPresenca());
             $sql->execute();            
         }
 
         public function update($arduino) {
-            $sql = $this->con->prepare("UPDATE arduino SET ip = ?, mac = ?, gateway = ?, mask = ?, porta = ?, pinDHT22 = ?, pinRELE1 = ?, pinRELE2 = ?, pinRELE3 = ?, pinRELE4 = ?, pinLDR = ? WHERE idArduino = ?");
+            $sql = $this->con->prepare("UPDATE arduino SET ip = ?, mac = ?, gateway = ?, mask = ?, porta = ?, pinDHT22 = ?, pinRELE1 = ?, pinRELE2 = ?, pinRELE3 = ?, pinRELE4 = ?, pinLDR = ?, pinPresenca = ? WHERE idArduino = ?");
             $sql->bindParam(1, $arduino->getIP());
             $sql->bindParam(2, $arduino->getMAC());
             $sql->bindParam(3, $arduino->getGateway());
@@ -36,7 +37,8 @@
             $sql->bindParam(9, $arduino->getPinoRele3());
             $sql->bindParam(10, $arduino->getPinoRele4());
             $sql->bindParam(11, $arduino->getPinoLDR());
-            $sql->bindParam(12, $arduino->getIdArduino());
+            $sql->bindParam(12, $arduino->getPinoPresenca());
+            $sql->bindParam(13, $arduino->getIdArduino());
             $sql->execute();             
         }
 
@@ -65,6 +67,7 @@
             $arduino->setPinoRele3((int)$row['pinRELE3']);
             $arduino->setPinoRele4((int)$row['pinRELE4']);
             $arduino->setPinoLDR((int)$row['pinLDR']);
+            $arduino->setPinoPresenca((int)$row['pinPresenca']);
             
             return $arduino;
         }
@@ -88,6 +91,7 @@
                 $arduino->setPinoRele3((int)$row['pinRELE3']);
                 $arduino->setPinoRele4((int)$row['pinRELE4']);
                 $arduino->setPinoLDR((int)$row['pinLDR']); 
+                $arduino->setPinoPresenca((int)$row['pinPresenca']);
 
                 $Arduinos[] = $arduino;
             }

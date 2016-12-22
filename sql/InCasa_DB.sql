@@ -14,18 +14,19 @@ CREATE TABLE aplicativo(
 
 -- Tabela responsável pelas configurações do Arduino --
 CREATE TABLE arduino(
-	idArduino	INT				AUTO_INCREMENT NOT NULL,
-	ip			VARCHAR(15)		NOT NULL,
-    mac			VARCHAR(17)		NOT NULL,
-	gateway		VARCHAR(15)		NOT NULL,
-	mask		VARCHAR(15)		NOT NULL,
-	porta		VARCHAR(15)		NOT NULL,
-	pinDHT22	INT				NOT NULL,
-	pinRELE1	INT				NOT NULL,
-	pinRELE2	INT				NOT NULL,
-	pinRELE3	INT				NOT NULL,
-	pinRELE4	INT				NOT NULL,
-	pinLDR		INT				NOT NULL,
+	idArduino		INT				AUTO_INCREMENT NOT NULL,
+	ip				VARCHAR(15)		NOT NULL,
+    mac				VARCHAR(17)		NOT NULL,
+	gateway			VARCHAR(15)		NOT NULL,
+	mask			VARCHAR(15)		NOT NULL,
+	porta			VARCHAR(15)		NOT NULL,
+	pinDHT22		INT				NOT NULL,
+	pinRELE1		INT				NOT NULL,
+	pinRELE2		INT				NOT NULL,
+	pinRELE3		INT				NOT NULL,
+	pinRELE4		INT				NOT NULL,
+	pinLDR			INT				NOT NULL,
+	pinPresenca		INT				NOT NULL,
     CONSTRAINT	pk_arduino	PRIMARY KEY	(idArduino)
 );
 

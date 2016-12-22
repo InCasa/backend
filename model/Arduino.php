@@ -13,6 +13,7 @@
         Private $PinoRele3;
         Private $PinoRele4;
         Private $PinoLDR;
+        Private $PinoPresenca;
         
         Public function __construct() {
             
@@ -56,6 +57,10 @@
         
         public function getPinoLDR(){
             return $this->PinoLDR;
+        }
+
+        public function getPinoPresenca(){
+            return $this->PinoPresenca;
         }
         
         public function getPorta(){
@@ -112,6 +117,10 @@
 
         function setPinoLDR($PinoLDR) {
             $this->PinoLDR = $PinoLDR;
+        }
+        
+        function setPinoPresenca($PinoPresenca) {
+            $this->PinoPresenca = $PinoPresenca;
         }
 
             
