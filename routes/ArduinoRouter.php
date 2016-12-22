@@ -72,8 +72,10 @@
         $arduinoDAO = new ArduinoDAO();
         $arduinoDAO->create($arduino);
 
-        $response->getBody()->write("Hello,".$arduino->getMAC());
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
     })->add($validJson);
     
     $app->put('/arduino/update/{id}',function($request, $response) {
