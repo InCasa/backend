@@ -58,4 +58,16 @@
             return $releValores;
         }
 
+        public function getLast($id) {
+            $sql = $this->con->prepare("SELECT * FROM releValor WHERE idRele = ? ORDER BY idReleValor DESC");
+            $sql->bindParam(1, $id);
+            $sql->execute();
+            $row = $sql->fetch();
+            
+            $releValor = new ReleValor();            
+            $releValor->setValor((int)$row['valor']);
+            
+            return $releValor;
+        }
+
     }

@@ -21,12 +21,9 @@
 		$id = $request->getAttribute('id');
         
         $releValorDAO = new ReleValorDAO();
-        $releValor = $releValorDAO->getReleValor($id);
+        $releValor = $releValorDAO->getLast($id);
         
-        $json = array('id'=>$releValor->getIdReleValor(),
-        'valor'=>$releValor->getValor(),
-        'DataHorario'=>$releValor->getDataHorario(),
-        'idRele'=>$releValor->getIdRele());
+        $json = array('valor'=>$releValor->getValor());
         return json_encode($json);
 	});
     
@@ -41,7 +38,10 @@
         $releValorDAO = new ReleValorDAO();
         $releValorDAO->create($releValor);
         
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
     })->add($validJson);
         
     $app->delete('/releValor/delete/{id}', function($request, $response, $args) {
