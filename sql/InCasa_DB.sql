@@ -20,13 +20,13 @@ CREATE TABLE arduino(
 	gateway			VARCHAR(15)		NOT NULL,
 	mask			VARCHAR(15)		NOT NULL,
 	porta			VARCHAR(15)		NOT NULL,
-	pinDHT22		INT				NOT NULL,
-	pinRELE1		INT				NOT NULL,
-	pinRELE2		INT				NOT NULL,
-	pinRELE3		INT				NOT NULL,
-	pinRELE4		INT				NOT NULL,
-	pinLDR			INT				NOT NULL,
-	pinPresenca		INT				NOT NULL,
+	pinDHT22		VARCHAR(2)		NOT NULL,
+	pinRELE1		VARCHAR(2)		NOT NULL,
+	pinRELE2		VARCHAR(2)		NOT NULL,
+	pinRELE3		VARCHAR(2)		NOT NULL,
+	pinRELE4		VARCHAR(2)		NOT NULL,
+	pinLDR			VARCHAR(2)		NOT NULL,
+	pinPresenca		VARCHAR(2)		NOT NULL,
     CONSTRAINT	pk_arduino	PRIMARY KEY	(idArduino)
 );
 

@@ -48,7 +48,9 @@
             'porta'=>$arduino->getPorta()
             );
         
-		return json_encode($json);
+        $newResponse = $response->withJson($json);
+        //no android as vezes com o return comentado ele exibe as informações e as vezes não, ate o momento não se sabe o motivo para a aleatoriedade.
+        //return $newResponse;
 	});
     
     $app->post('/arduino', function($request, $response) {
