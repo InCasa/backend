@@ -14,7 +14,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/temperatura/{id}',  function ($request, $response) {	
 		$id = $request->getAttribute('id');
@@ -27,7 +27,7 @@
         'descricao'=>$temperatura->getDescricao());
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->post('/temperatura', function($request, $response) {
         $temperatura = new Temperatura();
@@ -41,7 +41,7 @@
         $temperaturaDAO->create($temperatura);
         
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->put('/temperatura/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
@@ -57,8 +57,8 @@
         $temperaturaDAO->update($temperatura);
 
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/temperatura/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE temperatura";
-    });
+    })->add($authBasic);

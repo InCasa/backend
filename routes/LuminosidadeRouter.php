@@ -14,7 +14,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/luminosidade/{id}',  function ($request, $response) {			
         $id = $request->getAttribute('id');
@@ -27,7 +27,7 @@
         'descricao'=>$luminosidade->getDescricao());
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->post('/luminosidade', function($request, $response, $args) {
         $luminosidade = new Luminosidade();
@@ -42,7 +42,7 @@
 
         $response->getBody()->write("Hello,".$luminosidade->getNome());
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->put('/luminosidade/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
@@ -58,8 +58,8 @@
         $luminosidadeDAO->update($luminosidade);
 
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/luminosidade/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE Luminosidade";
-    });
+    })->add($authBasic);

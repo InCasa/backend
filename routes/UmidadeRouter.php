@@ -14,7 +14,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/umidade/{id}',  function ($request, $response) {	
 		$id = $request->getAttribute('id');
@@ -27,7 +27,7 @@
         'descricao'=>$umidade->getDescricao());
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->post('/umidade', function($request, $response) {
         $umidade = new Umidade();
@@ -41,7 +41,7 @@
         $umidadeDAO->create($umidade);
         
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->put('/umidade/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
@@ -57,8 +57,8 @@
         $umidadeDAO->update($umidade);
 
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/umidade/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE umidade";
-    });
+    })->add($authBasic);

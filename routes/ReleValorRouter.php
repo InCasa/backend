@@ -15,7 +15,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/releValor/{id}',  function ($request, $response) {	
 		$id = $request->getAttribute('id');
@@ -25,7 +25,7 @@
         
         $json = array('valor'=>$releValor->getValor());
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->post('/releValor', function($request, $response) {
         $releValor = new ReleValor();
@@ -42,8 +42,23 @@
         $newResponse = $response->withJson($data);
         
         return $newResponse;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
+
+    $app->put('/releValor/update/{id}',function($request, $response) {
+        $id = $request->getAttribute('id');
+
+        $body = $request->getParsedBody();
+
+        $releValorDAO = new ReleValorDAO();
+        $releValor = $releValorDAO->getReleValor($id);
+
+        $releValor->setValor($body['valor']);
+
+        $releValorDAO->update($releValor);
+
+        return $response;
+    })->add($validJson)->add($authBasic);
         
     $app->delete('/releValor/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE releValor";
-    });
+    })->add($authBasic);

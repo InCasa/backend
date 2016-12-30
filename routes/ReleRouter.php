@@ -14,7 +14,7 @@
         $releDAO->create($rele);
         
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
 
     $app->get('/rele',  function ($request, $response) {			
                 
@@ -31,7 +31,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/rele/{id}',  function ($request, $response) {			
         $id = $request->getAttribute('id');
@@ -45,7 +45,7 @@
         'porta'=>$rele->getPorta());
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->put('/rele/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
@@ -62,8 +62,8 @@
         $releDAO->update($rele);
 
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/rele/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE Rele";
-    });
+    })->add($authBasic);

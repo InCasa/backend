@@ -9,7 +9,7 @@
         $json = array('valor'=>$presencaValor->getValor());
                 
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/presencaValor/{id}',  function ($request, $response) {			
         $id = $request->getAttribute('id');
@@ -23,7 +23,7 @@
         'idPresenca'=>$presencaValor->getIdSensorPresenca());
         
         return json_encode($json);
-	});    
+	})->add($authBasic);    
     
     $app->post('/presencaValor', function($request, $response) {
         $presencaValor = new PresencaValor();
@@ -37,13 +37,13 @@
         $presencaValorDAO->create($presencaValor);
         
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->put('/presencaValor/update/{id}',function($request, $response, $args) {
         print_r($args);
         return "Rota PUT presencaValor";
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/presencaValor/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE presencaValor";
-    });
+    })->add($authBasic);

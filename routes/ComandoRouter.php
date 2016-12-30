@@ -1,5 +1,4 @@
 <?php
-
     global $app;
 
     $app->post('/comando', function($request, $response, $args) {
@@ -8,4 +7,4 @@
         $comando = $body['comando'];
         CommandRead::readCommand($comando);
         
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);

@@ -1,5 +1,5 @@
 <?php
-	global $app;
+    global $app;
 
     $app->get('/arduino',  function () {	
 		$arduinoDAO = new ArduinoDAO();
@@ -25,7 +25,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/arduino/{id}',  function ($request, $response) {
         $id = $request->getAttribute('id');
@@ -50,8 +50,8 @@
         
         $newResponse = $response->withJson($json);
         //no android as vezes com o return comentado ele exibe as informações e as vezes não, ate o momento não se sabe o motivo para a aleatoriedade.
-        //return $newResponse;
-	});
+        return $newResponse;
+	})->add($authBasic);
     
     $app->post('/arduino', function($request, $response) {
 		$arduino = new Arduino();
@@ -78,7 +78,7 @@
         $newResponse = $response->withJson($data);
         
         return $newResponse;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->put('/arduino/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
@@ -104,8 +104,8 @@
         $arduinoDAO->update($arduino);
 
         return $response;        
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/arduino/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE arduino";
-    });
+    })->add($authBasic);

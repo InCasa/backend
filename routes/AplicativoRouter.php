@@ -14,7 +14,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/aplicativo/{id}',  function ($request, $response) {
         $id = $request->getAttribute('id');
@@ -25,7 +25,7 @@
         $json = array('id'=>$aplicativo->getIdAplicativo(), 'mac'=>$aplicativo->getMAC());
         
 		return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->post('/aplicativo', function($request, $response) {
         $aplicativo = new Aplicativo();
@@ -39,7 +39,7 @@
         $aplicativoDAO->create($aplicativo);
         
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->put('/aplicativo/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
@@ -55,8 +55,8 @@
         $aplicativoDAO->update($aplicativo);
 
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/aplicativo/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE aplicativo";
-    });
+    })->add($authBasic);

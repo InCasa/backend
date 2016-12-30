@@ -14,7 +14,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
 
     $app->get('/user/{id}',  function ($request, $response) {
         $id = $request->getAttribute('id');
@@ -27,7 +27,7 @@
         'login'=>$user->getLogin());
         
 		return json_encode($json);
-	});
+	})->add($authBasic);
 
     $app->post('/user',  function ($request, $response, $args) {	
 		$user = new User();
@@ -70,8 +70,8 @@
         $userDAO->update($user);
         
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/user/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE user";
-    });
+    })->add($authBasic);

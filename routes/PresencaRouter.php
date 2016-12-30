@@ -14,7 +14,7 @@
         }
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->get('/presenca/{id}',  function ($request, $response) {			
         $id = $request->getAttribute('id');
@@ -27,7 +27,7 @@
         'descricao'=>$presenca->getDescricao());
         
         return json_encode($json);
-	});
+	})->add($authBasic);
     
     $app->post('/presenca', function($request, $response, $args) {
         $presenca = new Presenca();
@@ -42,7 +42,7 @@
 
         $response->getBody()->write("Hello,".$presenca->getNome());
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->put('/presenca/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
@@ -58,8 +58,8 @@
         $presencaDAO->update($presenca);
 
         return $response;
-    })->add($validJson);
+    })->add($validJson)->add($authBasic);
     
     $app->delete('/presenca/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE Presenca";
-    });
+    })->add($authBasic);
