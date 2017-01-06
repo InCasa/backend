@@ -131,7 +131,7 @@ CREATE TABLE presencaValor(
 CREATE TABLE userS(
 	idUserS	INT				AUTO_INCREMENT	NOT NULL,
 	nome		VARCHAR(40)		NOT NULL,
-    login		VARCHAR(10)		NOT NULL,
+    login		VARCHAR(20)		NOT NULL UNIQUE,
     senha		VARCHAR(60)		NOT NULL,
     CONSTRAINT	pk_userS	PRIMARY KEY	(idUserS)
 );

@@ -81,5 +81,25 @@
             }                  
             
         }
+		
+		 public function getUserID($login, $senha) {
+			$sql = $this->con->prepare("SELECT senha FROM userS WHERE login = ?");
+            $sql->bindParam(1, $login);        
+            if($sql->execute() && $sql->rowCount() == 1) {
+                $row = $sql->fetch();
+            
+                $password = $row['senha'];
+                
+				$senhaC = crypt($senha, $password);					
+			} 
+			
+            $sql = $this->con->prepare("SELECT idUserS FROM userS WHERE login = ? AND senha = ?");
+            $sql->bindParam(1, $login);        
+			$sql->bindParam(2, $senhaC);
+			if($sql->execute() && $sql->rowCount() == 1) {
+				$row = $sql->fetch();
+				return $row['idUserS'];
+			}	            
+        }
         
     }

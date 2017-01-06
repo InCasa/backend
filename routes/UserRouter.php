@@ -75,3 +75,18 @@
     $app->delete('/user/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE user";
     })->add($authBasic);
+	
+	$app->post('/userID',  function ($request, $response) {
+		$body = $request->getParsedBody();
+		
+		$login = $body['login'];
+		$senha = $body['senha'];
+		
+        $userDAO = new UserDAO();
+        
+        $userid = $userDAO->getUserID($login, $senha);
+	
+		$json[] = array('id'=>$userid);
+		
+        return json_encode($json);
+	})->add($validJson)->add($authBasic);
