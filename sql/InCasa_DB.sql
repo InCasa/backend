@@ -33,7 +33,7 @@ CREATE TABLE arduino(
 -- Tabela responsável pelas informações do sensor --
 CREATE TABLE sensorLuminosidade(
 	idSensor	INT				AUTO_INCREMENT NOT NULL,
-    nome		VARCHAR(12)		NOT NULL,
+    nome		VARCHAR(30)		NOT NULL,
 	descricao	VARCHAR(40)		NOT NULL,	
 	CONSTRAINT	pk_sensor_luminosidade	PRIMARY KEY	(idSensor)
 );
@@ -52,7 +52,7 @@ CREATE TABLE luminosidadeValor(
 -- Tabela responsável pelas informações do sensor --
 CREATE TABLE sensorTemperatura(
 	idSensor	INT				AUTO_INCREMENT NOT NULL,
-    nome		VARCHAR(12)		NOT NULL,
+    nome		VARCHAR(30)		NOT NULL,
 	descricao	VARCHAR(40)		NOT NULL,		
 	CONSTRAINT	pk_sensor_temperatura	PRIMARY KEY	(idSensor)
 );
@@ -71,7 +71,7 @@ CREATE TABLE temperaturaValor(
 -- Tabela responsável pelas informações do sensor --
 CREATE TABLE sensorUmidade(
 	idSensor	INT				AUTO_INCREMENT NOT NULL,
-    nome		VARCHAR(12)		NOT NULL,
+    nome		VARCHAR(30)		NOT NULL,
 	descricao	VARCHAR(40)		NOT NULL,	
 	CONSTRAINT	pk_sensor_umidade	PRIMARY KEY	(idSensor)
 );
@@ -90,7 +90,7 @@ CREATE TABLE umidadeValor(
 -- Tabela responsável pelas informações do rele --
 CREATE TABLE rele(
 	idRele		INT				AUTO_INCREMENT NOT NULL,
-    nome		VARCHAR(12)		NOT NULL,
+    nome		VARCHAR(30)		NOT NULL,
 	descricao	VARCHAR(40)		NOT NULL,
 	porta		INT				NOT NULL,
 	CONSTRAINT	pk_rele	PRIMARY KEY	(idRele)
@@ -111,7 +111,7 @@ CREATE TABLE releValor(
 -- Tabela responsável pelas informações do sensor --
 CREATE TABLE sensorPresenca(
 	idSensor	INT				AUTO_INCREMENT NOT NULL,
-    nome		VARCHAR(12)		NOT NULL,
+    nome		VARCHAR(30)		NOT NULL,
 	descricao	VARCHAR(40)		NOT NULL,	
 	CONSTRAINT	pk_sensor_presenca	PRIMARY KEY	(idSensor)
 );
