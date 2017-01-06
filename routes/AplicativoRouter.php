@@ -22,7 +22,7 @@
         $aplicativoDAO = new AplicativoDAO();
         $aplicativo = $aplicativoDAO->getAplicativo($id);
         
-        $json = array('id'=>$aplicativo->getIdAplicativo(), 'mac'=>$aplicativo->getMAC());
+        $json = array('id'=>$aplicativo->getIdAplicativo(), 'nome'=>$aplicativo->getNome(), 'mac'=>$aplicativo->getMAC());
         
 		return json_encode($json);
 	})->add($authBasic);
