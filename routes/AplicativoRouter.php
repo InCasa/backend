@@ -24,7 +24,8 @@
         
         $json = array('id'=>$aplicativo->getIdAplicativo(), 'nome'=>$aplicativo->getNome(), 'mac'=>$aplicativo->getMAC());
         
-		return json_encode($json);
+		$newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->post('/aplicativo', function($request, $response) {
@@ -38,7 +39,10 @@
         $aplicativoDAO = new AplicativoDAO();
         $aplicativoDAO->create($aplicativo);
         
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
     })->add($validJson)->add($authBasic);
     
     $app->put('/aplicativo/update/{id}',function($request, $response) {
