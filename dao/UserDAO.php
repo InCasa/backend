@@ -11,7 +11,7 @@
             $sql->bindParam(1, $user->getNome());
             $sql->bindParam(2, $user->getLogin());
             $sql->bindParam(3, $user->getSenha());
-            $sql->execute();         
+            $sql->execute();			
         }
 
         public function update($user) {
@@ -82,7 +82,7 @@
             
         }
 		
-		 public function getUserID($login, $senha) {
+		public function getUserID($login, $senha) {
 			$sql = $this->con->prepare("SELECT senha FROM userS WHERE login = ?");
             $sql->bindParam(1, $login);        
             if($sql->execute() && $sql->rowCount() == 1) {
@@ -101,5 +101,21 @@
 				return $row['idUserS'];
 			}	            
         }
+		
+		public function getDuplicateLogin($login) {
+		
+		$sql = $this->con->prepare("SELECT count(*) FROM users where login = ?");
+            $sql->bindParam(1, $login);        
+			$sql->execute();
+			
+			$result = $sql->fetchColumn();			
+			
+            if($result >= 1) {
+                return true;					
+			} else {
+				return false;
+			}	
+		
+		}
         
     }

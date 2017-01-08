@@ -38,13 +38,22 @@
         $user->setLogin($body['login']);
         $user->setSenha($body['senha']);
 
-        $userDAO = new UserDAO();
-        $userDAO->create($user);
-
-        $data = array('valido' => true);
-        $newResponse = $response->withJson($data);
-        
-        return $newResponse;
+		$userDAO = new UserDAO();
+		
+		$duplicate = $userDAO->getDuplicateLogin($body['login']);		
+		
+		if($duplicate) {
+			$data = array('valido' => false);
+			$newResponse = $response->withJson($data);		
+		
+			return $newResponse;	
+		} else {
+			$userDAO->create($user);
+			$data = array('valido' => true);
+			$newResponse = $response->withJson($data);		
+		
+			return $newResponse;	
+		}
         
 	})->add($validJson);
     
@@ -58,6 +67,8 @@
     $app->put('/user/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
         
+		echo $id;
+		
         $body = $request->getParsedBody();
         
         $userDAO = new UserDAO();
