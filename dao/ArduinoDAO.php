@@ -98,4 +98,28 @@
 
             return $Arduinos;
         }
+
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM arduino ORDER BY idArduino DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+                $arduino = new Arduino();
+                $arduino->setIdArduino((int)$row['idArduino']);
+                $arduino->setIp($row['ip']);
+                $arduino->setMAC($row['mac']);
+                $arduino->setGateway($row['gateway']);
+                $arduino->setMask($row['mask']);
+                $arduino->setPorta($row['porta']);
+                $arduino->setPinoDHT22($row['pinDHT22']);
+                $arduino->setPinoRele1($row['pinRELE1']);
+                $arduino->setPinoRele2($row['pinRELE2']);
+                $arduino->setPinoRele3($row['pinRELE3']);
+                $arduino->setPinoRele4($row['pinRELE4']);
+                $arduino->setPinoLDR($row['pinLDR']); 
+                $arduino->setPinoPresenca($row['pinPresenca']); 
+
+            return $arduino;
+        }
+
     }

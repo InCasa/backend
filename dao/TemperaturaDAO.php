@@ -58,6 +58,19 @@
 
             return $temperaturas;
         }
+
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM sensorTemperatura ORDER BY idSensor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+                $temperatura = new Temperatura();
+                $temperatura->setIdTemperatura((int)$row['idSensor']);
+                $temperatura->setNome($row['nome']);
+                $temperatura->setDescricao($row['descricao']);
+
+            return $temperatura;
+        }
         
 
     }

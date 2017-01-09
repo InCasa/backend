@@ -58,5 +58,18 @@
 
             return $luminosidades;
         }
+
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM sensorLuminosidade ORDER BY idSensor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+                $luminosidade = new Luminosidade();
+                $luminosidade->setIdLuminosidade((int)$row['idSensor']);
+				$luminosidade->setNome($row['nome']);
+				$luminosidade->setDescricao($row['descricao']); 
+
+            return $luminosidade;
+        }
 							
 	}			

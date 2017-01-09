@@ -59,4 +59,17 @@
             return $umidades;
         }
 
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM sensorUmidade ORDER BY idSensor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+                $umidade = new Umidade();
+                $umidade->setIdUmidade((int)$row['idSensor']);
+                $umidade->setNome($row['nome']);
+                $umidade->setDescricao($row['descricao']);
+
+            return $umidade;
+        }
+
     }

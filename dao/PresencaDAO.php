@@ -58,5 +58,18 @@
 
             return $presencas;
         }
+
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM sensorPresenca ORDER BY idSensor DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+                $presenca = new Presenca();
+                $presenca->setIdPresenca((int)$row['idSensor']);
+				$presenca->setNome($row['nome']);
+				$presenca->setDescricao($row['descricao']); 
+
+            return $presenca;
+        }
 							
 	}			

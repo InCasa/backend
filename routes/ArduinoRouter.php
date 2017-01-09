@@ -3,12 +3,9 @@
 
     $app->get('/arduino',  function () {	
 		$arduinoDAO = new ArduinoDAO();
-        $arduinos = array();
-        $arduinos = $arduinoDAO->getAll();
+        $arduino = $arduinoDAO->getLast();
         
-        $json = array();
-        foreach ($arduinos as $arduino) {
-            $json[] = array('id'=>$arduino->getIdArduino(), 
+        $json = array('id'=>$arduino->getIdArduino(), 
             'ip'=>$arduino->getIP(), 
             'mac'=>$arduino->getMAC(), 
             'gateway'=>$arduino->getGateway(),
@@ -22,9 +19,9 @@
             'PinoPresenca'=>$arduino->getPinoPresenca(), 
             'porta'=>$arduino->getPorta()
             );
-        }
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/arduino/{id}',  function ($request, $response) {

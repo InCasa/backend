@@ -59,5 +59,18 @@
             return $aplicativos;
         }
 
+        public function getLast(){            
+            $sql = $this->con->prepare("SELECT * FROM aplicativo ORDER BY idAplicativo DESC");
+            $sql->execute();
+            $row = $sql->fetch();
+            
+                $aplicativo = new Aplicativo();
+                $aplicativo->setIdAplicativo((int)$row['idAplicativo']);
+                $aplicativo->setMAC($row['mac']);
+                $aplicativo->setNome($row['nome']); 
+
+            return $aplicativo;
+        }
+
 }
     

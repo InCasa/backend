@@ -3,17 +3,13 @@
 
     $app->get('/aplicativo',  function () {	
         $aplicativoDAO = new AplicativoDAO();
-        $aplicativos = array();
-        $aplicativos = $aplicativoDAO->getAll();
+
+        $aplicativo = $aplicativoDAO->getLast();
         
-        $json = array();
-        foreach ($aplicativos as $aplicativo) {
-            $json[] = array('id'=>$aplicativo->getIdAplicativo(),
-            'nome'=>$aplicativo->getNome(),
-            'mac'=>$aplicativo->getMAC());
-        }
-        
-        return json_encode($json);
+        $json = array('id'=>$aplicativo->getIdAplicativo(), 'nome'=>$aplicativo->getNome(), 'mac'=>$aplicativo->getMAC());
+                
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/aplicativo/{id}',  function ($request, $response) {
