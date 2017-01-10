@@ -1,7 +1,7 @@
 <?php
 	global $app;
 
-    $app->get('/aplicativo',  function () {	
+    $app->get('/aplicativo',  function ($request, $response) {	
         $aplicativoDAO = new AplicativoDAO();
 
         $aplicativo = $aplicativoDAO->getLast();
@@ -54,7 +54,10 @@
 
         $aplicativoDAO->update($aplicativo);
 
-        return $response;
+        $data = array('valido' => true);
+		$newResponse = $response->withJson($data);		
+		
+		return $newResponse;
     })->add($validJson)->add($authBasic);
     
     $app->delete('/aplicativo/delete/{id}', function($request, $response, $args) {

@@ -46,7 +46,6 @@
             );
         
         $newResponse = $response->withJson($json);
-        //no android as vezes com o return comentado ele exibe as informações e as vezes não, ate o momento não se sabe o motivo para a aleatoriedade.
         return $newResponse;
 	})->add($authBasic);
     
@@ -100,7 +99,10 @@
 
         $arduinoDAO->update($arduino);
 
-        return $response;        
+        $data = array('valido' => true);
+		$newResponse = $response->withJson($data);		
+		
+		return $newResponse;      
     })->add($validJson)->add($authBasic);
     
     $app->delete('/arduino/delete/{id}', function($request, $response, $args) {
