@@ -7,4 +7,10 @@
         $comando = $body['comando'];
         CommandRead::readCommand($comando);
         
+        $json = array('valido' => true);
+
+        $newResponse = $response->withJson($json);		
+		
+		return $newResponse; 
+
     })->add($validJson)->add($authBasic);
