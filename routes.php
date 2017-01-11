@@ -30,7 +30,7 @@
 
         $userDAO = new UserDAO();
         
-        if($userDAO->getUserLogin($login, $senha)){
+        if($userDAO->getValidUserLogin($login, $senha)){
             $next($request, $response);				
 			return $response;
         }else{

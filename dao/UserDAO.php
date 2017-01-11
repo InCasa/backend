@@ -62,7 +62,8 @@
             return $users;
         }
         
-        public function getUserLogin($login, $senha) {
+        //método para autenticar o usuario.
+        public function getValidUserLogin($login, $senha) {
             $sql = $this->con->prepare("SELECT senha FROM userS WHERE login = ?");
             $sql->bindParam(1, $login);        
             if($sql->execute() && $sql->rowCount() == 1) {
@@ -81,7 +82,28 @@
             }                  
             
         }
-		
+
+		public function getUserLogin($login, $senha) {
+            $sql = $this->con->prepare("SELECT * FROM userS WHERE login = ?");
+            $sql->bindParam(1, $login); 
+            $sql->execute();
+            $row = $sql->fetch();  
+
+                $user = new User();
+                $user->setIdUser($row['idUserS']);
+                $user->setNome($row['nome']);
+                $user->setLogin($row['login']);
+                $user->setSenha($row['senha']);
+            
+                $password = $row['senha'];
+                
+                if(crypt($senha, $password) == $password) {
+                    return $user;
+                } 
+                                
+            
+        }
+        
 		public function getUserID($login, $senha) {
 			$sql = $this->con->prepare("SELECT senha FROM userS WHERE login = ?");
             $sql->bindParam(1, $login);        
@@ -99,7 +121,9 @@
 			if($sql->execute() && $sql->rowCount() == 1) {
 				$row = $sql->fetch();
 				return $row['idUserS'];
-			}	            
+			}
+            $row = $sql->fetch();
+            return $row['idUserS'];	            
         }
 		
 		public function getDuplicateLogin($login) {

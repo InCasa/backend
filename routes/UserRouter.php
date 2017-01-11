@@ -1,7 +1,7 @@
 <?php
 	global $app;
     
-    $app->get('/user',  function () {
+    $app->get('/users',  function () {
         $userDAO = new UserDAO();
         $users = array();
         $users = $userDAO->getAll();
@@ -29,7 +29,24 @@
 		return json_encode($json);
 	})->add($authBasic);
 
-    $app->post('/user',  function ($request, $response, $args) {	
+    $app->post('/GetUser',  function ($request, $response) {
+        $body = $request->getParsedBody();
+        $login = $body['login'];
+        $senha = $body['senha'];
+
+        $userDAO = new UserDAO();
+        $user = $userDAO->getUserLogin($login, $senha);
+        
+        $json = array('id'=>$user->getIdUser(), 
+        'nome'=>$user->getNome(), 
+        'login'=>$user->getLogin());
+        
+		$newResponse = $response->withJson($json);		
+		
+		return $newResponse; 
+	})->add($validJson)->add($authBasic);
+
+    $app->post('/user',  function ($request, $response) {	
 		$user = new User();
 
         $body = $request->getParsedBody();
@@ -55,7 +72,7 @@
 			return $newResponse;	
 		}
         
-	})->add($validJson);
+	})->add($validJson)->add($authBasic);
     
     $app->post('/userLogin',  function ($request, $response, $args) {
         $data = array('Authorized' => true);
@@ -66,9 +83,7 @@
         
     $app->put('/user/update/{id}',function($request, $response) {
         $id = $request->getAttribute('id');
-        
-		echo $id;
-		
+
         $body = $request->getParsedBody();
         
         $userDAO = new UserDAO();
@@ -87,7 +102,7 @@
         return "Rota DELETE user";
     })->add($authBasic);
 	
-	$app->post('/userID',  function ($request, $response, $args) {
+	$app->post('/userID',  function ($request, $response) {
 		$body = $request->getParsedBody();
 		
 		$login = $body['login'];
@@ -100,6 +115,5 @@
 		$json[] = array('id'=>$userid);
 		
         $newResponse = $response->withJson($json);
-
         return $newResponse;
 	})->add($validJson)->add($authBasic);
