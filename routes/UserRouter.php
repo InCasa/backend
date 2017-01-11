@@ -29,7 +29,7 @@
 		return json_encode($json);
 	})->add($authBasic);
 
-    $app->post('/GetUser',  function ($request, $response) {
+    $app->post('/getUser',  function ($request, $response) {
         $body = $request->getParsedBody();
         $login = $body['login'];
         $senha = $body['senha'];
