@@ -95,7 +95,10 @@
         
         $userDAO->update($user);
         
-        return $response;
+        $data = array('Authorized' => true);
+        $newResponse = $response->withJson($data);
+        	
+        return $newResponse;
     })->add($validJson)->add($authBasic);
     
     $app->delete('/user/delete/{id}', function($request, $response, $args) {
