@@ -13,7 +13,10 @@
         $releDAO = new ReleDAO();
         $releDAO->create($rele);
         
-        return $response;
+        $data = array('valido' => true);
+		$newResponse = $response->withJson($data);		
+		
+		return $newResponse; 
     })->add($validJson)->add($authBasic);
 
     $app->get('/rele',  function ($request, $response) {			
@@ -30,7 +33,8 @@
             'porta'=>$rele->getPorta());
         }
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/rele/{id}',  function ($request, $response) {			
@@ -44,7 +48,8 @@
         'descricao'=>$rele->getDescricao(),
         'porta'=>$rele->getPorta());
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->put('/rele/update/{id}',function($request, $response) {
@@ -61,7 +66,10 @@
 
         $releDAO->update($rele);
 
-        return $response;
+        $data = array('valido' => true);
+		$newResponse = $response->withJson($data);		
+		
+		return $newResponse; 
     })->add($validJson)->add($authBasic);
     
     $app->delete('/rele/delete/{id}', function($request, $response, $args) {
