@@ -13,7 +13,8 @@
             'descricao'=>$umidade->getDescricao());
         }
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/umidade/{id}',  function ($request, $response) {	
@@ -26,7 +27,8 @@
         'nome'=>$umidade->getNome(),
         'descricao'=>$umidade->getDescricao());
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->post('/umidade', function($request, $response) {
@@ -40,7 +42,8 @@
         $umidadeDAO = new UmidadeDAO();
         $umidadeDAO->create($umidade);
         
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
     })->add($validJson)->add($authBasic);
     
     $app->put('/umidade/update/{id}',function($request, $response) {
@@ -56,7 +59,8 @@
 
         $umidadeDAO->update($umidade);
 
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
     })->add($validJson)->add($authBasic);
     
     $app->delete('/umidade/delete/{id}', function($request, $response, $args) {

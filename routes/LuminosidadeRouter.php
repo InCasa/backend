@@ -13,7 +13,8 @@
             'descricao'=>$luminosidade->getDescricao());
         }
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/luminosidade/{id}',  function ($request, $response) {			
@@ -26,7 +27,8 @@
         'nome'=>$luminosidade->getNome(),
         'descricao'=>$luminosidade->getDescricao());
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->post('/luminosidade', function($request, $response, $args) {
@@ -40,8 +42,8 @@
         $luminosidadeDAO = new LuminosidadeDAO();
         $luminosidadeDAO->create($luminosidade);
 
-        $response->getBody()->write("Hello,".$luminosidade->getNome());
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
     })->add($validJson)->add($authBasic);
     
     $app->put('/luminosidade/update/{id}',function($request, $response) {
@@ -57,7 +59,8 @@
 
         $luminosidadeDAO->update($luminosidade);
 
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
     })->add($validJson)->add($authBasic);
     
     $app->delete('/luminosidade/delete/{id}', function($request, $response, $args) {

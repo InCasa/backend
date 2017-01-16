@@ -13,7 +13,8 @@
             'descricao'=>$presenca->getDescricao());
         }
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/presenca/{id}',  function ($request, $response) {			
@@ -26,7 +27,8 @@
         'nome'=>$presenca->getNome(),
         'descricao'=>$presenca->getDescricao());
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->post('/presenca', function($request, $response, $args) {
@@ -40,8 +42,8 @@
         $presencaDAO = new PresencaDAO();
         $presencaDAO->create($presenca);
 
-        $response->getBody()->write("Hello,".$presenca->getNome());
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
     })->add($validJson)->add($authBasic);
     
     $app->put('/presenca/update/{id}',function($request, $response) {
@@ -57,7 +59,8 @@
 
         $presencaDAO->update($presenca);
 
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
     })->add($validJson)->add($authBasic);
     
     $app->delete('/presenca/delete/{id}', function($request, $response, $args) {
