@@ -37,7 +37,13 @@
         
         $releValorDAO = new ReleValorDAO();
         $releValorDAO->create($releValor);
-        
+
+        if($body['valor'] == true) {
+            CurlRele::ligaRele($body['idRele']);
+        } else {
+            CurlRele::desligaRele($body['idRele']);
+        }
+
         $data = array('valido' => true);
         $newResponse = $response->withJson($data);
         
