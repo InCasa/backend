@@ -25,20 +25,23 @@
 
         $releValor = new ReleValor();  
 
+        $arduinoDAO = new ArduinoDAO();
+        $arduino = $arduinoDAO->getArduino(1);
+
         //configura a requesição do PHP para o arduino com timeout.
         $opts = array('http' =>array('method'  => 'GET','timeout' => 1));
         $context  = stream_context_create($opts);
 
-        for ($i = 1; $i <= 4; $i++) {
-            $jsonReleValor = file_get_contents("http://".$arduino->getIP()."/?rele/".$i, false, $context);
-            $rele = json_decode($jsonReleValor, true); 
-
-            $releValor->setValor($rele['valor']);
-            $releValor->setIdRele($i);
         
-            $releValorDAO = new ReleValorDAO();
-            $releValorDAO->create($releValor);
-        }
+        $jsonReleValor = file_get_contents("http://".$arduino->getIP()."/?rele/".$id, false, $context);
+        $rele = json_decode($jsonReleValor, true); 
+
+        $releValor->setValor($rele['valor']);
+        $releValor->setIdRele($id);
+        
+        $releValorDAO = new ReleValorDAO();
+        $releValorDAO->create($releValor);
+        
 
         $json = array('valor'=>$releValor->getValor());
         return json_encode($json);
