@@ -1,17 +1,32 @@
 <?php
 	global $app;
 
-    $app->get('/umidadeValor',  function () {	
+    $app->get('/umidadeValor',  function ($request, $response) {	
 		$umidadeValorDAO = new UmidadeValorDAO();
+
+        $arduinoDAO = new ArduinoDAO();
+        $arduino = $arduinoDAO->getArduino(1);
+
+        //configura a requesição do PHP para o arduino com timeout.
+        $opts = array('http' =>array('method'  => 'GET','timeout' => 1));
+        $context  = stream_context_create($opts);
+        $jsonUmidadeValor = file_get_contents("http://".$arduino->getIP()."/?umidade", false, $context);
+        $umi = json_decode($jsonUmidadeValor, true);
+        //criar objeto que salva a umidade no banco de dados.
+        $umidadeValor = new UmidadeValor();
+        $umidadeValor->setValor($umi["valor"]);
+        $umidadeValor->setIdUmidade(1);
+        $umidadeValorDAO->create($umidadeValor);
         
         $umidadeValor = $umidadeValorDAO->getLast();
 		
         $json = array('valor'=>$umidadeValor->getValor());
                 
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
 
-    $app->get('/umidadeValorDetails',  function () {	
+    $app->get('/umidadeValorDetails',  function ($request, $response) {	
 		$umidadeValorDAO = new UmidadeValorDAO();
         $umidadeValores = array();
         $umidadeValores = $umidadeValorDAO->getAll();
@@ -24,7 +39,8 @@
             'idUmidade'=>$umidadeValor->getIdUmidade());
         }
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/umidadeValor/{id}',  function ($request, $response) {	
@@ -38,7 +54,8 @@
         'DataHorario'=>$umidadeValor->getDataHorario(),
         'idUmidade'=>$umidadeValor->getIdUmidade());
         
-		return json_encode($json);
+		$newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->post('/umidadeValor', function($request, $response) {
@@ -52,14 +69,9 @@
         $umidadeValorDAO = new UmidadeValorDAO();
         $umidadeValorDAO->create($umidadeValor);
         
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
     })->add($validJson)->add($authBasic);
-    
-    $app->put('/umidadeValor/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT umidadeValor";
-    })->add($validJson)->add($authBasic);
-    
-    $app->delete('/umidadeValor/delete/{id}', function($request, $response, $args) {
-        return "Rota DELETE umidadeValor";
-    })->add($authBasic);
+        

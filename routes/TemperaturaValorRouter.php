@@ -1,17 +1,32 @@
 <?php
 	global $app;
 
-    $app->get('/temperaturaValor',  function () {	
+    $app->get('/temperaturaValor',  function ($request, $response) {	
 		$temperaturaValorDAO = new TemperaturaValorDAO();
+        
+        $arduinoDAO = new ArduinoDAO();
+        $arduino = $arduinoDAO->getArduino(1);
+
+        //configura a requesição do PHP para o arduino com timeout.
+        $opts = array('http' =>array('method'  => 'GET','timeout' => 1));
+        $context  = stream_context_create($opts);
+        $jsonTempValor = file_get_contents("http://".$arduino->getIP()."/?temperatura", false, $context);
+        $temp = json_decode($jsonTempValor, true);
+        //criar objeto que salva a temperatura no banco de dados.
+        $temperaturaValorTemp = new TemperaturaValor();
+        $temperaturaValorTemp->setValor($temp["valor"]);
+        $temperaturaValorTemp->setIdTemperatura(1);
+        $temperaturaValorDAO->create($temperaturaValorTemp);
         
         $temperaturaValor = $temperaturaValorDAO->getLast();
 		
         $json = array('valor'=>$temperaturaValor->getValor());
                 
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
 
-    $app->get('/temperaturaValorDetails',  function () {	
+    $app->get('/temperaturaValorDetails',  function ($request, $response) {	
 		$temperaturaValorDAO = new TemperaturaValorDAO();
         $temperaturaValores = array();
         $temperaturaValores = $temperaturaValorDAO->getAll();
@@ -24,7 +39,8 @@
             'idTemperatura'=>$temperaturaValor->getIdTemperatura());
         }
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/temperaturaValor/{id}',  function ($request, $response) {
@@ -38,7 +54,8 @@
         'DataHorario'=>$temperaturaValor->getDataHorario(),
         'idTemperatura'=>$temperaturaValor->getIdTemperatura());
         
-		return json_encode($json);
+		$newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->post('/temperaturaValor', function($request, $response, $args) {
@@ -52,14 +69,9 @@
         $temperaturaValorDAO = new TemperaturaValorDAO();
         $temperaturaValorDAO->create($temperaturaValor);
         
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
     })->add($validJson)->add($authBasic);
     
-    $app->put('/temperaturaValor/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT temperaturaValor";
-    })->add($validJson)->add($authBasic);
-    
-    $app->delete('/temperaturaValor/delete/{id}', function($request, $response, $args) {
-        return "Rota DELETE temperaturaValor";
-    })->add($authBasic);

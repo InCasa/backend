@@ -1,14 +1,29 @@
 <?php
     global $app;
 
-    $app->get('/presencaValor',  function () {			
+    $app->get('/presencaValor',  function ($request, $response) {			
         $presencaValorDAO = new PresencaValorDAO();
+
+        $arduinoDAO = new ArduinoDAO();
+        $arduino = $arduinoDAO->getArduino(1);
+
+        //configura a requesição do PHP para o arduino com timeout.
+        $opts = array('http' =>array('method'  => 'GET','timeout' => 1));
+        $context  = stream_context_create($opts);
+        $jsonPresencaValor = file_get_contents("http://".$arduino->getIP()."/?movimento", false, $context);
+        $movimento = json_decode($jsonPresencaValor, true);
+        //criar objeto que salva o movimento no banco de dados.
+        $presencaValor = new PresencaValor();
+        $presencaValor->setValor($movimento["valor"]);
+        $presencaValor->setIdSensorPresenca(1);
+        $presencaValorDAO->create($presencaValor);
         
         $presencaValor = $presencaValorDAO->getLast();
 		
         $json = array('valor'=>$presencaValor->getValor());
                 
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/presencaValor/{id}',  function ($request, $response) {			
@@ -22,7 +37,8 @@
         'DataHorario'=>$presencaValor->getDataHorario(),
         'idPresenca'=>$presencaValor->getIdSensorPresenca());
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);    
     
     $app->post('/presencaValor', function($request, $response) {
@@ -36,14 +52,9 @@
         $presencaValorDAO = new PresencaValorDAO();
         $presencaValorDAO->create($presencaValor);
         
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
     })->add($validJson)->add($authBasic);
-    
-    $app->put('/presencaValor/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT presencaValor";
-    })->add($validJson)->add($authBasic);
-    
-    $app->delete('/presencaValor/delete/{id}', function($request, $response, $args) {
-        return "Rota DELETE presencaValor";
-    })->add($authBasic);
+

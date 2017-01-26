@@ -1,14 +1,29 @@
 <?php
     global $app;
 
-    $app->get('/luminosidadeValor',  function () {			
+    $app->get('/luminosidadeValor',  function ($request, $response) {			
         $luminosidadeValorDAO = new LuminosidadeValorDAO();
+
+        $arduinoDAO = new ArduinoDAO();
+        $arduino = $arduinoDAO->getArduino(1);
+
+        //configura a requesição do PHP para o arduino com timeout.
+        $opts = array('http' =>array('method'  => 'GET','timeout' => 1));
+        $context  = stream_context_create($opts);
+        $jsonLuminosidadeValor = file_get_contents("http://".$arduino->getIP()."/?luminosidade", false, $context);
+        $lumi = json_decode($jsonLuminosidadeValor, true);
+        //criar objeto que salva a luminosidade no banco de dados.
+        $luminosidadeValor = new LuminosidadeValor();
+        $luminosidadeValor->setValor($lumi["valor"]);
+        $luminosidadeValor->setIdSensorLuminosidade(1);
+        $luminosidadeValorDAO->create($luminosidadeValor);
         
         $luminosidadeValor = $luminosidadeValorDAO->getLast();
 		
         $json = array('valor'=>$luminosidadeValor->getValor());
                 
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);
     
     $app->get('/luminosidadeValor/{id}',  function ($request, $response) {			
@@ -22,7 +37,8 @@
         'DataHorario'=>$luminosidadeValor->getDataHorario(),
         'idLuminosidade'=>$luminosidadeValor->getIdSensorLuminosidade());
         
-        return json_encode($json);
+        $newResponse = $response->withJson($json);
+        return $newResponse;
 	})->add($authBasic);    
     
     $app->post('/luminosidadeValor', function($request, $response) {
@@ -36,14 +52,9 @@
         $luminosidadeValorDAO = new LuminosidadeValorDAO();
         $luminosidadeValorDAO->create($luminosidadeValor);
         
-        return $response;
+        $data = array('valido' => true);
+        $newResponse = $response->withJson($data);
+        
+        return $newResponse;
     })->add($validJson)->add($authBasic);
-    
-    $app->put('/luminosidadeValor/update/{id}',function($request, $response, $args) {
-        print_r($args);
-        return "Rota PUT luminosidadeValor";
-    })->add($validJson)->add($authBasic);
-    
-    $app->delete('/luminosidadeValor/delete/{id}', function($request, $response, $args) {
-        return "Rota DELETE luminosidadeValor";
-    })->add($authBasic);
+
