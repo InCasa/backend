@@ -74,9 +74,16 @@
         
 	})->add($validJson)->add($authBasic);
     
+    $app->get('/userLogin',  function ($request, $response, $args) {
+        $data = array('Authorized' => true);
+        $newResponse = $response->withJson(($data), 200);
+        	
+        return $newResponse;	
+	})->add($authBasic);
+
     $app->post('/userLogin',  function ($request, $response, $args) {
         $data = array('Authorized' => true);
-        $newResponse = $response->withJson($data);
+        $newResponse = $response->withJson(($data), 200);
         	
         return $newResponse;	
 	})->add($authBasic);
