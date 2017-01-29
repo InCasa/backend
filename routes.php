@@ -14,28 +14,34 @@
         $login;
         $senha;
         $auth;
-
-        if($headers['PHP_AUTH_USER'] != 0){
-            $login = $headers['PHP_AUTH_USER'][0];
-            $senha = $headers['PHP_AUTH_PW'][0];
-        }else{
-            $auth = $headers['Authorization'];
-
-            $auth = substr($auth, -6);
-            $auth = base64_decode($auth);
-            list ($loginAuth, $senhaAuth) = split (':', $auth);
-            $login = loginAuth;
-            $senha = $senhaAuth;
-        }
-
-        $userDAO = new UserDAO();
+        $headerValueArray = $request->getHeader('PHP_AUTH_USER');
         
-        if($userDAO->getValidUserLogin($login, $senha)){
-            $next($request, $response);				
-			return $response;
+        if($headerValueArray != null){
+            if($headers['PHP_AUTH_USER'] != 0){
+                $login = $headers['PHP_AUTH_USER'][0];
+                $senha = $headers['PHP_AUTH_PW'][0];
+            }else{
+                $auth = $headers['Authorization'];
+
+                $auth = substr($auth, -6);
+                $auth = base64_decode($auth);
+                list ($loginAuth, $senhaAuth) = split (':', $auth);
+                $login = loginAuth;
+                $senha = $senhaAuth;
+            }
+
+            $userDAO = new UserDAO();
+            
+            if($userDAO->getValidUserLogin($login, $senha)){
+                $next($request, $response);				
+                return $response;
+            }else{
+                return $response->withJson(array('Authorized' => false), 401);	
+            }
         }else{
             return $response->withJson(array('Authorized' => false), 401);	
         }
+        
     };
 	
 	foreach(glob("routes/*.php") as $filename){
