@@ -5,9 +5,9 @@
         $body = $request->getParsedBody();
       
         $comando = $body['comando'];
-        CommandRead::readCommand($comando);
+        $json = CommandRead::readCommand($comando);
         
-        $json = array('valido' => true);
+        //$json = array('valido' => true);
 
         $newResponse = $response->withJson($json);		
 		
