@@ -50,7 +50,7 @@
                             //realizar ação do rele, ligar ou desligar.
                             if(in_array("ligar", $parsedCommand) or in_array("acender", $parsedCommand) ){
                                 
-                                if($releStatus['valor'] == true){
+                                if($releStatus['valor'] == false){
                                     $json = array('valor'=> "ja ligado!");
                                     return $json;
                                     
@@ -73,7 +73,7 @@
 
                             if(in_array("desligar", $parsedCommand) or in_array("apagar", $parsedCommand) ){
                                 
-                                if($releStatus['valor'] == false){
+                                if($releStatus['valor'] == true){
                                     $json = array('valor'=> "ja desligado!");
                                     return $json;
                                     
