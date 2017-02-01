@@ -86,3 +86,22 @@
     $app->delete('/releValor/delete/{id}', function($request, $response, $args) {
         return "Rota DELETE releValor";
     })->add($authBasic);
+
+    $app->get('/releValor/{limit}/{offset}',  function ($request, $response) {	
+		$limit = $request->getAttribute('limit');
+        $offset = $request->getAttribute('offset');
+
+        $releValorDAO = new ReleValorDAO();
+        $releValores = array();
+        $releValores = $releValorDAO->getAllPag($limit, $offset);
+        
+        $json = array();
+        foreach ($releValores as $releValor) {
+            $json[] = array('id'=>$releValor->getIdReleValor(),
+            'valor'=>$releValor->getValor(),
+            'DataHorario'=>$releValor->getDataHorario(),
+            'idRele'=>$releValor->getIdRele());
+        }
+        
+        return json_encode($json);
+	})->add($authBasic);

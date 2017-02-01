@@ -70,4 +70,25 @@
             return $releValor;
         }
 
+        public function getAllPag($limit, $offset) {
+            $releValores = array();
+
+            $sql = $this->con->prepare("SELECT * FROM releValor LIMIT :limit OFFSET :offset");
+            $sql->bindValue(':limit', (INT)$limit, PDO::PARAM_INT);
+            $sql->bindValue(':offset', (INT)$offset, PDO::PARAM_INT);            
+            $sql->execute();
+             
+            foreach ($sql->fetchAll() as $row) {  
+                $releValor = new ReleValor();                
+                $releValor->setIdRele((int)$row['idRele']);
+                $releValor->setValor((int)$row['valor']);
+                $releValor->setDataHorario($row['dataHorario']);
+                $releValor->setIdReleValor((int)$row['idReleValor']);
+
+                $releValores[] = $releValor;
+            }
+
+            return $releValores;
+        }
+
     }
