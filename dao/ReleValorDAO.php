@@ -73,7 +73,7 @@
         public function getAllPag($limit, $offset) {
             $releValores = array();
 
-            $sql = $this->con->prepare("SELECT * FROM releValor LIMIT :limit OFFSET :offset");
+            $sql = $this->con->prepare("SELECT * FROM releValor ORDER BY dataHorario DESC  LIMIT :limit OFFSET :offset");
             $sql->bindValue(':limit', (INT)$limit, PDO::PARAM_INT);
             $sql->bindValue(':offset', (INT)$offset, PDO::PARAM_INT);            
             $sql->execute();
