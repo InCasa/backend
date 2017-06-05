@@ -16,9 +16,6 @@
             $string = implode(" ", $Vcomando);
             $parsedCommand = explode(" ", $string);
 
-            //**Apagar esse var_dump depois**
-            var_dump($parsedCommand);
-
             $releDAO = new ReleDAO();
             $temperaturaDAO = new TemperaturaDAO();
             $umidadeDAO = new UmidadeDAO();
