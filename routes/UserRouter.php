@@ -72,7 +72,7 @@
 			return $newResponse;	
 		}
         
-	})->add($validJson)->add($authBasic);
+	})->add($validJson);
     
     $app->get('/userLogin',  function ($request, $response, $args) {
         $data = array('Authorized' => true);
